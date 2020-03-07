@@ -1,0 +1,66 @@
+{% block content %}
+<div class="signup_bg">
+    <form class="form-signup fset" method="POST" action="">
+        {% csrf_token %}
+        {% if error %}
+        <h3 style="color:red">{{error}}</h3>
+        {% endif %}
+
+        <h1 class="mb-3 font-weight-normal text-center">멋쟁이사자처럼 8기 리쿠르팅</h1>
+        <h4 class="text-center">회원가입</h4>
+        <br>
+        <div class="row">
+            <div class="col-md-6 mb-3 form-group">
+                <label for="{{ f.last_name.id_for_label }}">성: <span class="required">*</span></label>
+                <input type="text" name="{{ f.last_name.html_name }}" class="form-control last_name"
+                    id="{{ f.last_name.id_for_label }}" placeholder="홍" required="">
+                <small class="text-danger">{{f.last_name.errors}}</small>
+            </div>
+
+            <div class="col-md-6 mb-3 form-group">
+                <label for="{{ f.first_name.id_for_label }}">이름: <span class="required">*</span></label>
+                <input type="text" name="{{ f.first_name.html_name }}" class="form-control first_name"
+                    id="{{ f.first_name.id_for_label }}" placeholder="길동" required="">
+                <small class="text-danger">{{f.first_name.errors}}</small>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="{{ f.username.id_for_label }}">아이디: <span class="required">*</span></label>
+            <input type="text" name="{{ f.username.html_name }}" class="form-control username"
+                id="{{ f.username.id_for_label }}" aria-describedby="emailHelp" placeholder="sglikelion"
+                required="">
+            <small class="text-danger">{{f.username.errors}}</small>
+        </div>
+
+
+        <div class="form-group">
+            <label for="{{ f.password.id_for_label }}">비밀번호: <span class="required">*</span></label>
+            <input type="password" class="form-control" id="{{ f.password.id_for_label }}"
+                name="{{ f.password.html_name }}" placeholder="비밀번호 입력" required="">
+            <small class="text-danger">{{f.password.errors}}</small>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ f.password_check.id_for_label }}">비밀번호 확인: <span class="required">*</span></label>
+            <input type="password" class="form-control" id="{{ f.password_check.id_for_label }}"
+                name="{{ f.password_check.html_name }}" placeholder="비밀번호 입력" required="">
+            <small id="passwordHelp" class="sub_fset form-text text-muted helptext">&nbsp;비밀번호를 다시 한 번 입력하세요. </small>
+            <small class="text-danger">{{f.password_check.errors}}</small>
+        </div>
+
+
+        <div class="form-group">
+            <label for="{{ f.email.id_for_label }}">이메일: <span class="required">*</span></label>
+            <input type="text" class="form-control username" id="{{ f.email.id_for_label }}" aria-describedby="emailHelp"
+                placeholder="hello@likelion.org" maxlength="150" name="{{ f.email.html_name }}" required="">
+            <small class="text-danger">{{f.email.errors}}</small>
+        </div>
+
+        <br>
+        <input class="title_fset btn btn-lg btn-info btn-block" type="submit" value=제출하기>
+    </form>
+</div>
+
+{% endblock %}

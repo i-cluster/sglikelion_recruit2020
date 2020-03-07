@@ -1,0 +1,16 @@
+질문 1 : ~~<br>
+응답 : {{art.q1}}<br><br>
+질문 2 : ~~<br>
+응답 : {{art.q2}}<br><br>
+질문 3 : ~~<br>
+응답 : {{art.q3}}<br><br>
+질문 4 : ~~<br>
+응답 : {{art.q4}}<br><br>
+
+{% if art.final == False %}
+    <a href="{% url 'edit' %}">수정하기</a><br>
+    <a href="{% url 'submit' %}">제출하기</a><br>
+    <a href="{% url 'delete' %}">삭제하기</a><br>
+{% endif %}
+
+<a href="{% url 'main' %}">돌아가기</a>

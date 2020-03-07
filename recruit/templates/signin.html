@@ -1,0 +1,38 @@
+<div class="signin_bg text-center">
+  <br>
+  {% if user.is_authenticated %}<!-- 만약 로그인이 되어있는 상태이면 -->
+  <!--{{user.last_name}} {{user.first_name}}님 환영합니다.--> <!-- 다음과같이 출력 -->
+  {{user.username}}님 환영합니다.
+   <!-- <a href="{% url 'signout' %}">로그아웃</a> 로그아웃이 뜨도록 한다. -->
+  {% else %} <!-- 로그인이 되어있지않다면 -->
+  <!-- <a href="{% url 'signin' %}">로그인</a> 로그인과-->
+  <!--  <a href="{% url 'signup' %}">회원가입</a> 회원가입이 뜨도록 한다. -->
+  {% endif %}
+  <hr> <!-- 윗부분(고정) -->
+    <form class="form-signin" method="POST" action="">
+    {% csrf_token %}
+        <h1 class="mb-10 font-weight-normal text-center">Hack Your Life</h1>
+        {% if user.is_authenticated %}
+        <br>
+        <a class="main" href="/main">지원서 작성하기</a>
+        <br><br>
+        <a href="{% url 'signout' %}">로그아웃</a>
+        <br><br>
+        {% else %}
+          <h3>로그인</h3>
+          {% if error %}
+          <p class="text-danger">{{ error }}</p>
+          {% endif %}
+          <label for="{{ f.username.id_for_label }}" class="sr-only">User Name</label>
+          <input name="{{ f.username.html_name }}" type="username" id="{{ f.username.id_for_label }}" class="form-control" placeholder="아이디" required="" autofocus="">
+          <br><br>
+          <label for="{{ f.password.id_for_label }}" class="sr-only">Password</label>
+          <input name="{{ f.password.html_name }}" type="password" id="{{ f.password.id_for_label }}" class="form-control" placeholder="비밀번호" required="">
+          <br><br>
+          <input class="btn btn-lg btn-info btn-block input_btn" type="submit" value="로그인">
+          <br><br>
+          <a class="bt-20 text-info" href="{% url 'signup'%}">회원가입</a>
+        {% endif %}
+        <p class="text-muted">© 2020 서강대 멋사</p>
+    </form>
+</div>

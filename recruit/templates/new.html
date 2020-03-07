@@ -1,0 +1,12 @@
+<form method="POST">
+    {% csrf_token %}
+    Q1 : 질문<br>
+    {{art.q1}}<br>
+    Q2 : 질문<br>
+    {{art.q2}}<br>
+    Q3 : 질문<br>
+    {{art.q3}}<br>
+    Q4 : 질문<br>
+    {{art.q4}}<br>
+    <button type="submit">임시저장하기</button>
+</form>
