@@ -1,20 +1,24 @@
-{% if user.is_authenticated %}<!-- 만약 로그인이 되어있는 상태이면 -->
-  <!--{{user.last_name}} {{user.first_name}}님 환영합니다.--> <!-- 다음과같이 출력 -->
-  {{user.username}}님 환영합니다.<br><br>
-  <a href="{% url 'show' %}">멋사소개&FAQ</a><br><br>
-   <!-- <a href="{% url 'signout' %}">로그아웃</a> 로그아웃이 뜨도록 한다. -->
-  {% else %} <!-- 로그인이 되어있지않다면 -->
-  <!-- <a href="{% url 'signin' %}">로그인</a> 로그인과-->
-  <!--  <a href="{% url 'signup' %}">회원가입</a> 회원가입이 뜨도록 한다. -->
-  {% endif %}
-  <hr> <!-- 윗부분(고정) -->
+{% extends 'base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}<!-- 만약 로그인이 되어있는 상태이면 -->
+        <!--{{user.last_name}} {{user.first_name}}님 환영합니다.--> <!-- 다음과같이 출력 -->
+        {{user.username}}님 환영합니다.<br><br>
+        <a href="{% url 'show' %}">멋사소개&FAQ</a><br><br>
+        <!-- <a href="{% url 'signout' %}">로그아웃</a> 로그아웃이 뜨도록 한다. -->
+    {% else %} <!-- 로그인이 되어있지않다면 -->
+        <!-- <a href="{% url 'signin' %}">로그인</a> 로그인과-->
+        <!--  <a href="{% url 'signup' %}">회원가입</a> 회원가입이 뜨도록 한다. -->
+    {% endif %}
+    <hr> <!-- 윗부분(고정) -->
     <form class="form-signin" method="POST" action="">
-    {% csrf_token %}
+        {% csrf_token %}
         <h1 class="mb-10 font-weight-normal text-center">Hack Your Life</h1>
- 
-    
-{% if art %}
-    <a href="{% url 'show' %}">지원서 보러가기</a>
-{% else %}
-    <a href="{% url 'new' %}">지원서 작성하기</a>
-{% endif %}
+
+
+        {% if art %}
+            <a href="{% url 'show' %}">지원서 보러가기</a>
+        {% else %}
+            <a href="{% url 'new' %}">지원서 작성하기</a>
+        {% endif %}
+    </form>
+{% endblock %}
