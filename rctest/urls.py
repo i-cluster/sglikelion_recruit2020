@@ -21,10 +21,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.signin, name="signin"),
+    path('', views.main, name="main"),
     path('signup/', views.signup, name="signup"),
     path('signout/', views.signout, name="signout"),
-    path('main', views.main, name="main"),
+    path('signin', views.signin, name="signin"),
     path('new', views.new, name="new"),
     path('show', views.show, name="show"),
     path('edit', views.edit, name="edit"),
