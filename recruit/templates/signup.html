@@ -1,66 +1,91 @@
+{% extends 'base.html' %}
 {% block content %}
-<div class="signup_bg">
-    <form class="form-signup fset" method="POST" action="">
-        {% csrf_token %}
-        {% if error %}
-        <h3 style="color:red">{{error}}</h3>
-        {% endif %}
 
-        <h1 class="mb-3 font-weight-normal text-center">멋쟁이사자처럼 8기 리쿠르팅</h1>
-        <h4 class="text-center">회원가입</h4>
-        <br>
-        <div class="row">
-            <div class="col-md-6 mb-3 form-group">
-                <label for="{{ f.last_name.id_for_label }}">성: <span class="required">*</span></label>
-                <input type="text" name="{{ f.last_name.html_name }}" class="form-control last_name"
-                    id="{{ f.last_name.id_for_label }}" placeholder="홍" required="">
-                <small class="text-danger">{{f.last_name.errors}}</small>
+    <div class="pl-5 py-3 ml-5" style="font-weight: bold;">
+        <h3 style="font-weight: bold;"><span style="color: #F7C142;">멋쟁이사자처럼</span><span style="color:#707070;"> 서강대학교</span></h3>
+        <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
+        <h4 style="font-weight: bold; color:#707070;">회원가입</h4>
+        <div class="float-left">
+            <hr style="width: 600px;">
+        </div>
+    </div>
+
+
+    <div class="container my-5">
+        <form class="mt-3" method="POST" action="">
+            {% csrf_token %}
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">이메일(ID)</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="staticEmail" name="email" >
+                </div>
+                <div class="col-sm-7" style="color: red;">
+                   * 이메일은 제출 후 수정할 수 없습니다
+                </div>
             </div>
-
-            <div class="col-md-6 mb-3 form-group">
-                <label for="{{ f.first_name.id_for_label }}">이름: <span class="required">*</span></label>
-                <input type="text" name="{{ f.first_name.html_name }}" class="form-control first_name"
-                    id="{{ f.first_name.id_for_label }}" placeholder="길동" required="">
-                <small class="text-danger">{{f.first_name.errors}}</small>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
+                <div class="col-sm-3">
+                    <input type="password" class="form-control" id="inputPassword" name="password1">
+                </div>
             </div>
-        </div>
-
-
-        <div class="form-group">
-            <label for="{{ f.username.id_for_label }}">아이디: <span class="required">*</span></label>
-            <input type="text" name="{{ f.username.html_name }}" class="form-control username"
-                id="{{ f.username.id_for_label }}" aria-describedby="emailHelp" placeholder="sglikelion"
-                required="">
-            <small class="text-danger">{{f.username.errors}}</small>
-        </div>
-
-
-        <div class="form-group">
-            <label for="{{ f.password.id_for_label }}">비밀번호: <span class="required">*</span></label>
-            <input type="password" class="form-control" id="{{ f.password.id_for_label }}"
-                name="{{ f.password.html_name }}" placeholder="비밀번호 입력" required="">
-            <small class="text-danger">{{f.password.errors}}</small>
-        </div>
-
-        <div class="form-group">
-            <label for="{{ f.password_check.id_for_label }}">비밀번호 확인: <span class="required">*</span></label>
-            <input type="password" class="form-control" id="{{ f.password_check.id_for_label }}"
-                name="{{ f.password_check.html_name }}" placeholder="비밀번호 입력" required="">
-            <small id="passwordHelp" class="sub_fset form-text text-muted helptext">&nbsp;비밀번호를 다시 한 번 입력하세요. </small>
-            <small class="text-danger">{{f.password_check.errors}}</small>
-        </div>
-
-
-        <div class="form-group">
-            <label for="{{ f.email.id_for_label }}">이메일: <span class="required">*</span></label>
-            <input type="text" class="form-control username" id="{{ f.email.id_for_label }}" aria-describedby="emailHelp"
-                placeholder="hello@likelion.org" maxlength="150" name="{{ f.email.html_name }}" required="">
-            <small class="text-danger">{{f.email.errors}}</small>
-        </div>
-
-        <br>
-        <input class="title_fset btn btn-lg btn-info btn-block" type="submit" value=제출하기>
-    </form>
-</div>
+            <div class="form-group row">
+                <label for="inputPassword2" class="col-sm-2 col-form-label">비밀번호 확인</label>
+                <div class="col-sm-3">
+                    <input type="password" class="form-control" id="inputPassword2" name="password2">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="username" class="col-sm-2 col-form-label">이름</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="major" class="col-sm-2 col-form-label">전공</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="major" name="major">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="semester" class="col-sm-2 col-form-label">누적학기</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="semester" name="semester" min="1">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="phone_num" class="col-sm-2 col-form-label">연락처</label>
+                <div class="col-sm-3">
+                    <input type="password" class="form-control" id="phone_num" name="phone_num">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword2" class="col-sm-2 col-form-label">희망 면접일</label>
+                <div class="col-sm-3 btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-light btn-outline-dark mr-3">
+                        <input type="radio">25(수)
+                    </label>
+                    <label class="btn btn-light btn-outline-dark mr-3">
+                        <input type="radio">26(목)
+                    </label>
+                    <label class="btn btn-light btn-outline-dark">
+                        <input type="radio">28(금)
+                    </label>
+                </div>
+                <div class="col-sm-4" style="color: red;">
+                    * 희망 면접일은 제출 후 수정할 수 없습니다
+                </div>
+            </div>
+            <h6>개인정보 수집 및 동의약관</h6>
+            <div style="border: 1px solid black; height: 200px; overflow: scroll;">
+                loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+                loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+                loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            </div>
+            <div class="text-center my-5">
+                <input class="btn btn-lg btn-light btn-outline-dark" type="submit" value=제출하기>
+            </div>
+        </form>
+    </div>
 
 {% endblock %}
