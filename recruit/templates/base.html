@@ -31,11 +31,13 @@
 </nav>
 {% endblock %}
 {% block bootstrap4_content %}
-    {% block content %}
-    {% endblock %}
+    <div style="min-height: 70vh;">
+        {% block content %}
+        {% endblock %}
+    </div>
 {% endblock %}
 {% block bootstrap4_after_content %}
-    <div class="footer fixed-bottom text-center">
+    <div class="footer">
         Copyright @ 2020 Likelion Sogang All rights Reserved
     </div>
 {% endblock %}
