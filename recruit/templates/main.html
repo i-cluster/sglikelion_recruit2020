@@ -1,5 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
+    <script src="../static/recruit/js/jquery-1.11.1.min.js"></script>
+    <script src="../static/recruit/js/video.js"></script>
+    <!--3. 비디오를 웹브라우저에 노출하기 위한 플러그인입니다. 비디오 재생 플레이어의 일종이라 생각하시면 됩니다.-->
+    <script src="../static/recruit/js/bigvideo.js"></script>
+    <!--4. 비디오나 이미지를 풀사이즈로 넣는 플러그인입니다. -->
+    <script src="../static/recruit/js/imagesloaded.pkgd.min.js"></script>
+
+    <script>
+        var BV = new $.BigVideo({useFlashForFirefox:false, container:$('#videoEle')});
+        // 비디오나 배경을 노출할 엘리먼트를 선택합니다. 
+        //$('#videoEle')는 html 태그중에 <div id="videoEle"></div> 를 말하는 것입니다.
+        BV.init();
+        if (Modernizr.touch) {
+          BV.show('../static/recruit/file/SampleVideo.jpg');
+          //모바일일 경우 비디오 대신 대체할 이미지입니다.
+        } else {
+          BV.show(
+            { type: "video/mp4",  src: "./file/SampleVideo_360x240_1mb.mp4", doLoop:true },
+            { type: "video/webm", src: "./file/SampleVideo_360x240_1mb.webm", doLoop:true },
+            { type: "video/ogg",  src: "./file/SampleVideo_360x240_1mb.ogv", doLoop:true }
+          );
+          //웹브라우저마다 지원하는 비디오 형식이 다르기 때문에 다양하게 만들어서 제공해야합니다. 
+          //변환은 다음팟인코더나, 카카오인코더를 이용하세요.
+          //옵션중에 doLoop는 영상 반복을 의미합니다. true는 영상 반복, false는 반복 안함입니다.
+          BV.getPlayer().volume(0);
+          //사운드를 0 즉 음소거 상태로 만듭니다.
+        }
+      </script>
+
+<div id="video"></div>
+
+
+
+
     {% if user.is_authenticated %}<!-- 만약 로그인이 되어있는 상태이면 -->
         <!--{{user.last_name}} {{user.first_name}}님 환영합니다.--> <!-- 다음과같이 출력 -->
         {{user.username}}님 환영합니다.<br><br>
@@ -21,4 +55,5 @@
             <a href="{% url 'new' %}">지원서 작성하기</a>
         {% endif %}
     </form>
+
 {% endblock %}
