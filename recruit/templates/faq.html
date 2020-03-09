@@ -11,6 +11,21 @@
         padding: 0 5%;
     }
 
+    .btn-outline-warning{
+    color: #f09837;
+    border-color: #f09837;
+    }
+
+    .btn-outline-warning:hover {
+    color: #fff;
+    background-color: #f09837;
+    border-color: #f09837;
+    }
+
+    .sign{
+            margin: 30px 0 30px 0;
+    }
+
 </style>
 
     <div class="pl-5 py-3 ml-5" style="font-weight: bold;">
@@ -79,15 +94,21 @@
         <br>
     </div>
 
-    <p class="paragraph">
+    <div class="sign text-center">
+    <p>
         더 궁금하신 사항은 페이스북/인스타그램 메시지, 공식 이메일을 통해 문의 주시기 바랍니다. 
         <br>
-        <a href="https://www.facebook.com/likelionsogang" style="font-size: 20px; font-weight: bold;">Facebook</a>
-        <a href="https://www.instagram.com/likelion_sg/" style="font-size: 20px; font-weight: bold;">Instagram</a>
+        <a href="https://www.facebook.com/likelionsogang" style="font-size: 18px; font-weight: bold;">Facebook</a>
+        <a href="https://www.instagram.com/likelion_sg/" style="font-size: 18px; font-weight: bold;">Instagram</a>
         <br>
         E-mail: sogang@likelion.org<br>
 
     </p>
+        <a class="btn btn-outline-warning" href="{% url 'signin' %}">로그인</a> 
+        <a class="btn btn-outline-warning" href="{% url 'signup' %}">회원가입</a> 
+      
+        
+    </div>
 
 
 </div>
