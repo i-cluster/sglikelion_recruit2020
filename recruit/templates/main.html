@@ -1,79 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% if user.is_authenticated %}<!-- 만약 로그인이 되어있는 상태이면 -->
+        <!--{{user.last_name}} {{user.first_name}}님 환영합니다.--> <!-- 다음과같이 출력 -->
+        {{user.username}}님 환영합니다.<br><br>
+        <a href="{% url 'show' %}">멋사소개&FAQ</a><br><br>
+        <!-- <a href="{% url 'signout' %}">로그아웃</a> 로그아웃이 뜨도록 한다. -->
+    {% else %} <!-- 로그인이 되어있지않다면 -->
+        <!-- <a href="{% url 'signin' %}">로그인</a> 로그인과-->
+        <!--  <a href="{% url 'signup' %}">회원가입</a> 회원가입이 뜨도록 한다. -->
+    {% endif %}
+    <hr> <!-- 윗부분(고정) -->
+    <form class="form-signin" method="POST" action="">
+        {% csrf_token %}
+        <h1 class="mb-10 font-weight-normal text-center">Hack Your Life</h1>
 
-    <div class="pl-5 py-3 ml-5" style="font-weight: bold;">
-        <h3 style="font-weight: bold;"><span style="color: #F7C142;">멋쟁이사자처럼</span><span style="color:#707070;"> 서강대학교</span></h3>
-        <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
-        <h4 style="font-weight: bold; color:#707070;">지원서 목록</h4>
-        <div class="float-left">
-            <hr style="width: 600px;">
-        </div>
-    </div>
 
-
-    <div class="container my-5">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">이름</th>
-                <th scope="col">성별</th>
-                <th scope="col">전공</th>
-                <th scope="col">학기</th>
-                <th scope="col">연락처</th>
-                <th scope="col">이메일</th>
-                <th scope="col">희망면접일</th>
-                <th scope="col">최종제출시간</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="text-center">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination d-flex justify-content-center">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
-    </div>
-
+        {% if art %}
+            <a href="{% url 'show' %}">지원서 보러가기</a>
+        {% else %}
+            <a href="{% url 'new' %}">지원서 작성하기</a>
+        {% endif %}
+    </form>
 {% endblock %}
