@@ -1,12 +1,50 @@
-<form method="POST">
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="pl-md-5 py-3 ml-md-5 mt-5 ml-4" style="font-weight: bold;">
+        <h3 style="font-weight: bold;"><span style="color: #F7C142;">멋쟁이사자처럼</span><span style="color:#707070;"> 서강대학교</span></h3>
+        <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
+        <h4 style="font-weight: bold; color:#707070;">지원서 작성</h4>
+        <div class="border-bottom mr-5" style="max-width: 600px; height: 10px;"></div>
+    </div>
+
+<div class="px-md-5 m-md-5 px-3">
+<form class="mt-3" method="POST">
     {% csrf_token %}
-    Q1 : 질문<br>
-    {{art.q1}}<br>
-    Q2 : 질문<br>
-    {{art.q2}}<br>
-    Q3 : 질문<br>
-    {{art.q3}}<br>
-    Q4 : 질문<br>
-    {{art.q4}}<br>
-    <button type="submit">임시저장하기</button>
+    <div class="form-group mb-5">
+        <label for="id_q1" class="mb-4 h5">1. 질문</label>
+        <textarea name="q1" class="form-control p-4" style="max-width: 1000px; height:400px;" id="id_q1"></textarea>
+    </div>
+    <div class="form-group mb-5">
+        <label for="id_q2" class="mb-4 h5">2. 질문</label>
+        <textarea name="q2" class="form-control p-4" style="max-width: 1000px; height:400px;" id="id_q2"></textarea>
+    </div>
+    <div class="form-group mb-5">
+        <label for="id_q3" class="mb-4 h5">3. 질문</label>
+        <textarea name="q3" class="form-control p-4" style="max-width: 1000px; height:400px;" id="id_q3"></textarea>
+    </div>
+    <div class="form-group mb-5">
+        <label for="id_q4" class="mb-4 h5">4. 질문</label>
+        <textarea name="q4" class="form-control p-4" style="max-width: 1000px; height:400px;" id="id_q4"></textarea>
+    </div>
+    <div class="form-group mb-5">
+        <div class="mb-4 h5">5. 자유제출</div>
+        <label for="id_q5" class="btn btn-lg btn-light btn-outline-dark">
+            <input type="file" name="{{ art.q5.html_name }}" style="display: none;" accept="" id="id_q5" onchange="$('#upload-file-info').html(this.files[0].name)">
+            <span>파일 업로드</span>
+        </label>
+        <span class="label label-info ml-3" id="upload-file-info"></span>
+    </div>
+    <div class="text-center my-5 py-5">
+        <input class="btn btn-lg btn-light btn-outline-dark" type="submit" value="임시저장하기">
+    </div>
 </form>
+</div>
+
+
+
+
+
+{% endblock %}
+
+<!-- {{art.q4}} -->
