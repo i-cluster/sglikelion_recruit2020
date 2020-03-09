@@ -29,11 +29,11 @@
     </div>
     <div class="form-group mb-5">
         <div class="mb-4 h5">5. 자유제출</div>
-        <label for="" class="btn btn-lg btn-light btn-outline-dark">
-            <input type="file" name="{{ art.q5.html_name }}" style="display: none;" accept="" id="" onchange="$('#upload-file-info').html(this.files[0].name)">
-            <span>파일 업로드</span><span class="label label-info" id="upload-file-info"></span>
+        <label for="id_q5" class="btn btn-lg btn-light btn-outline-dark">
+            <input type="file" name="{{ art.q5.html_name }}" style="display: none;" accept="" id="id_q5" onchange="$('#upload-file-info').html(this.files[0].name)">
+            <span>파일 업로드</span>
         </label>
-        
+        <span class="label label-info ml-3" id="upload-file-info"></span>
     </div>
 
     <div class="text-center my-5 py-5">

@@ -13,27 +13,27 @@
     {% csrf_token %}
     <div class="form-group mb-5">
         <label for="id_q1" class="mb-4 h5">1. 질문</label>
-        <textarea name="q1" class="form-control p-4" style="max-width: 1000px; height:400px;" cols="40" rows="10" required="" id="id_q1"></textarea>
+        <textarea name="q1" class="form-control p-4" style="max-width: 1000px; height:400px;" id="id_q1"></textarea>
     </div>
     <div class="form-group mb-5">
         <label for="id_q2" class="mb-4 h5">2. 질문</label>
-        <textarea name="q2" class="form-control p-4" style="max-width: 1000px; height:400px;" cols="40" rows="10" required="" id="id_q2"></textarea>
+        <textarea name="q2" class="form-control p-4" style="max-width: 1000px; height:400px;" id="id_q2"></textarea>
     </div>
     <div class="form-group mb-5">
         <label for="id_q3" class="mb-4 h5">3. 질문</label>
-        <textarea name="q3" class="form-control p-4" style="max-width: 1000px; height:400px;" cols="40" rows="10" required="" id="id_q3"></textarea>
+        <textarea name="q3" class="form-control p-4" style="max-width: 1000px; height:400px;" id="id_q3"></textarea>
     </div>
     <div class="form-group mb-5">
         <label for="id_q4" class="mb-4 h5">4. 질문</label>
-        <textarea name="q4" class="form-control p-4" style="max-width: 1000px; height:400px;" cols="40" rows="10" required="" id="id_q4"></textarea>
+        <textarea name="q4" class="form-control p-4" style="max-width: 1000px; height:400px;" id="id_q4"></textarea>
     </div>
     <div class="form-group mb-5">
         <div class="mb-4 h5">5. 자유제출</div>
-        <label for="" class="btn btn-lg btn-light btn-outline-dark">
-            <input type="file" name="" style="display: none;" accept="" id="" onchange="$('#upload-file-info').html(this.files[0].name)">
-            <span>파일 업로드</span><span class="label label-info" id="upload-file-info"></span>
+        <label for="id_q5" class="btn btn-lg btn-light btn-outline-dark">
+            <input type="file" name="{{ art.q5.html_name }}" style="display: none;" accept="" id="id_q5" onchange="$('#upload-file-info').html(this.files[0].name)">
+            <span>파일 업로드</span>
         </label>
-        
+        <span class="label label-info ml-3" id="upload-file-info"></span>
     </div>
     <div class="text-center my-5 py-5">
         <input class="btn btn-lg btn-light btn-outline-dark" type="submit" value="임시저장하기">
