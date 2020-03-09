@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
+<style>
+  .main-container{
+    margin: 10% 0 0 0;
+  }
+  .button{
+    margin-top: 10%;
+  }
 
-<div class="container">
+  .btn-outline-warning{
+    color: #f09837;
+    border-color: #f09837;
+  }
+
+  .btn-outline-warning:hover {
+    color: #fff;
+    background-color: #f09837;
+    border-color: #f09837;
+}
+</style>
+
+<div class="main-container">
   <div class="header">
-    <h1 class="text-center" style="font-size: 70px; font-weight: 800">HACK YOUR LIFE</h1> 
-    <P class="font--medium text-center">멋쟁이 사자처럼 서강대학교 8기 모집</P> 
-
+    <h1 class="text-center" style="font-size: 100px; font-weight: 800">HACK YOUR LIFE</h1> 
+    <h2 class="text-center" sytle="font-size: 50px; font-weight:400">멋쟁이 사자처럼 서강대학교 8기 모집</P> 
   </div>
 
   <div class="button">
@@ -21,9 +39,8 @@
       <a href="{% url 'signout' %}">로그아웃</a>
     {% else %} <!-- 로그인이 되어있지않다면 -->
     <div class="sign text-center">
-      <a href="{% url 'signin' %}">로그인</a> 
-      <br>
-      <a href="{% url 'signup' %}">회원가입</a> 
+      <a class="btn btn-outline-warning" href="{% url 'signin' %}">로그인</a> 
+      <a class="btn btn-outline-warning" href="{% url 'signup' %}">회원가입</a> 
     
       
     </div>
