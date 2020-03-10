@@ -29,14 +29,17 @@
                 <div class="col-sm-3">
                     <input type="password" class="form-control" id="inputPassword" name="password1">
                 </div>
-                <span style="color: red;">{{f.password1.errors}}</span>
+                <span style="color: red;">{{f.password.errors}}</span>
             </div>
             <div class="form-group row">
                 <label for="inputPassword2" class="col-sm-2 col-form-label">비밀번호 확인</label>
                 <div class="col-sm-3">
                     <input type="password" class="form-control" id="inputPassword2" name="password2">
                 </div>
-                <span style="color: red;">{{f.password2.errors}}</span>
+                <span style="color: red;">{{f.password_check.errors}}</span>
+                {% if error %}
+                <span style="color:red;">{{error}}</h3>
+                {% endif %}
             </div>
             <div class="form-group row">
                 <label for="username" class="col-sm-2 col-form-label">이름</label>
@@ -50,7 +53,7 @@
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="major" name="major">
                 </div>
-                <span style="color: red;">{{f.major.errors}}</span>
+                <span style="color: red;">{{f.info.errors}}</span>
             </div>
             <div class="form-group row">
                 <label for="semester" class="col-sm-2 col-form-label">누적학기</label>
@@ -64,7 +67,7 @@
                 <div class="col-sm-3">
                     <input type="password" class="form-control" id="phone_num" name="phone_num">
                 </div>
-                <span style="color: red;">{{f.phone_num.errors}}</span>
+                <span style="color: red;">{{f.phone.errors}}</span>
             </div>
             <div class="form-group row">
                 <label for="inputPassword2" class="col-sm-2 col-form-label">희망 면접일</label>
