@@ -1,25 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<style>
 
-pre{
-    font-family: 'Nanum Gothic', sans-serif !important; 
-    white-space: pre-wrap;
-    font-size: large;
-}
-@media (max-width: 600px){
-    #id_q1, #id_q2, #id_q3, #id_q4{
-        padding: 10px !important;
-    }
-    pre{
-        font-size: 14px;
-    }
-    .h5{
-        font-size: 17px;
-        line-height: 160%;
-    }
-}
-</style>
     <div class="pl-md-5 py-3 ml-md-5 mt-5 ml-4" style="font-weight: bold;">
         <h3 style="font-weight: bold;"><span style="color: #f09837;">멋쟁이사자처럼</span><span style="color:#707070;"> 서강대학교</span></h3>
         <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
@@ -27,26 +8,26 @@ pre{
         <div class="border-bottom mr-5" style="max-width: 600px; height: 10px;"></div>
     </div>
 
-<!-- <div class="px-md-5 m-md-5 px-3"> -->
-<div class="container mt-5">
+<div class="px-md-5 m-md-5 px-3">
+
     <div class="form-group mb-5">
-        <label for="id_q1" class="mb-4 h5 font-weight-bold">1. 지원동기와 활동 목표를 기술하세요. (700자)</label>
-        <div name="q1" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q1"><pre>{{ object_list.art.q1 }}</pre></div>
-    </div><br><br>
+        <label for="{{ art.q1.id_for_label }}" class="mb-4 h5">1. 질문</label>
+        <div name="q1" class="form-control p-4" style="max-width: 1000px; min-height:400px;" id="id_q1"><pre style="font-family: 'Nanum Gothic', sans-serif !important;">{{ object_list.art.q1 }}</pre></div>
+    </div>
     <div class="form-group mb-5">
-        <label for="id_q2" class="mb-4 h5 font-weight-bold">2. 타인과 협업했던 경험과 그 과정에서 자신이 수행한 역할에 대해 기술하세요. (700자)</label>
-        <div name="q2" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q2"><pre>{{ object_list.art.q2 }}</pre></div>
-    </div><br><br>
+        <label for="id_q2" class="mb-4 h5">2. 질문</label>
+        <div name="q2" class="form-control p-4" style="max-width: 1000px; min-height:400px;" id="id_q2"><pre style="font-family: 'Nanum Gothic', sans-serif !important;">{{ object_list.art.q2 }}</pre></div>
+    </div>
     <div class="form-group mb-5">
-        <label for="id_q3" class="mb-4 h5 font-weight-bold">3. IT 서비스로 구현하고 싶은 아이디어에 대해 구체적으로 기술하세요.<br>&nbsp&nbsp&nbsp(서비스가 해결하고자 하는 문제와 핵심 기능, 예상되는 사용자 등을 포함할 것) (800자)</label>
-        <div name="q3" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q3"><pre>{{ object_list.art.q3 }}</pre></div>
-    </div><br><br>
+        <label for="id_q3" class="mb-4 h5">3. 질문</label>
+        <div name="q3" class="form-control p-4" style="max-width: 1000px; min-height:400px;" id="id_q3"><pre style="font-family: 'Nanum Gothic', sans-serif !important;">{{ object_list.art.q3 }}</pre></div>
+    </div>
     <div class="form-group mb-5">
-        <label for="id_q4" class="mb-4 h5 font-weight-bold">4. 이용했던 서비스 중 인상 깊었던 부분이나 불편했던 점은 무엇이었고, 어떻게 발전/개선하면 좋을지 기술하세요. (700자)</label>
-        <div name="q4" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q4"><pre>{{ object_list.art.q4 }}</pre></div>
-    </div><br><br>
+        <label for="id_q4" class="mb-4 h5">4. 질문</label>
+        <div name="q4" class="form-control p-4" style="max-width: 1000px; min-height:400px;" id="id_q4"><pre style="font-family: 'Nanum Gothic', sans-serif !important;">{{ object_list.art.q4 }}</pre></div>
+    </div>
     <div class="form-group mb-5">
-        <div class="mb-4 h5 font-weight-bold">5. 본인이 했던 활동이나 프로젝트 중 소개하고 싶은 것이 있다면 자유롭게 첨부해주시기 바랍니다. (필수X, 최대 200MB 파일 1개)</div>
+        <div class="mb-4 h5">5. 첨부파일</div>
         {% if object_list.art.q5 %}
             <div>{{ object_list.art.q5 }}</div>
         {% endif %}
@@ -56,9 +37,9 @@ pre{
         <span style="color: red;">*지원서 제출 후에는 수정할 수 없습니다.</span>
     </div>
     <div class="text-center">
-        <a href="{% url 'edit' object_list.art.id %}" class="btn btn-lg btn-light btn-outline-dark mx-1 mb-2">수정하기</a>
-        <a href="{% url 'submit' %}" class="btn btn-lg btn-light btn-outline-dark mx-1 mb-2">제출하기</a>
-        <a href="{% url 'delete' %}" class="btn btn-lg btn-light btn-outline-dark mx-1 mb-2">삭제하기</a>
+        <a href="{% url 'edit' object_list.art.id %}" class="btn btn-lg btn-light btn-outline-dark mx-1">수정하기</a>
+        <a href="{% url 'submit' %}" class="btn btn-lg btn-light btn-outline-dark mx-1">제출하기</a>
+        <a href="{% url 'delete' %}" class="btn btn-lg btn-light btn-outline-dark mx-1">삭제하기</a>
     </div>
     {% endif %}
     <a href="{% url 'main' %}" class="mr-5" style="float: right; color: black;" >돌아가기</a>

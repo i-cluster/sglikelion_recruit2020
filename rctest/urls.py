@@ -19,11 +19,12 @@ from recruit import views
 from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
-from django_registration.backends.one_step.views import RegistrationView # 메일인증없이 1 step
+#from django_registration.backends.one_step.views import RegistrationView # 메일인증없이 1 step
 from django.contrib.auth.views import LoginView, LogoutView
 #
 urlpatterns = [
                   path('signup/', views.SignupView.as_view(), name='signup'),
+                  path('registration/login/', views.signin, name="signin"),
                   path('admin/', admin.site.urls),
                   path('', views.CustomLoginView.as_view(), name="main"),
                   path('signout/', views.signout, name="signout"),

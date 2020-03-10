@@ -36,6 +36,12 @@ class SignupForm(UserCreationForm):
             'password2',
             'last_name',
         )
+        
+class SigninForm(ModelForm):
+    class Meta:
+        model = User
+        widgets = {'password':forms.PasswordInput}
+        fields = ['username','password']
 
 class ProfileForm(forms.ModelForm):
     class Meta:
