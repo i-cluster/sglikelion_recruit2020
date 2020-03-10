@@ -4,3 +4,4 @@ myvenv/
 db.sqlite3
 migrations/
 mmvenv/
+__pycache__/
