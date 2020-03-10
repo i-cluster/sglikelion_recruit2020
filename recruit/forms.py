@@ -1,5 +1,5 @@
 from django import forms
-from .models import Application
+from .models import Application, Profile
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 
@@ -10,7 +10,7 @@ class ApplicationForm(forms.ModelForm):
 
 class SignupForm(ModelForm):
     password_check = forms.CharField(max_length=200, widget=forms.PasswordInput())
-    field_order=['username','password','password_check','last_name','first_name','email']
+    field_order=['username','password','password_check','last_name','first_name','email', 'phone', 'info']
     class Meta:
         model = User
         widget = {'password':forms.PasswordInput}
@@ -21,3 +21,13 @@ class SigninForm(ModelForm):
         model = User
         widgets = {'password':forms.PasswordInput}
         fields = ['username','password']
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username','password','last_name','first_name','email')
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('phone', 'info')

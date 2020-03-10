@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-from .models import Application
-from .forms import ApplicationForm, SignupForm, SigninForm
+from .models import Application, Profile
+from .forms import ApplicationForm, SignupForm, SigninForm, UserForm, ProfileForm
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.http.response import HttpResponseRedirect
@@ -72,8 +72,16 @@ def signup(request):#역시 GET/POST 방식을 사용하여 구현한다.
                 new_user = User.objects.create_user(form.cleaned_data['username'],form.cleaned_data['email'],form.cleaned_data['password'])
                 new_user.last_name = form.cleaned_data['last_name']
                 new_user.first_name = form.cleaned_data['first_name']
+                #new_user = User.objects.get(pk=user_id)#유저 모델 onetoone
+                #new_user.phone = form.cleaned_data['phone']#phone
+                #new_user.info = form.cleaned_data['info']#info(학번 학과 이름)
                 new_user.save()
-                auth.login(request, new_user)
+                phone = request.POST["phone"]#phone
+                user = request.POST["user"]
+                info = request.POST["info"]#info(학번 학과 이름)
+                profile = Profile(user=user, phone=phone, info=info)
+                profile.save()
+                auth.login(request, new_user, profile)
                 return HttpResponseRedirect(reverse('main'))
             else:
                 return render(request, 'signup.html',{'f':form, 'error':'비밀번호와 비밀번호 확인이 다릅니다.'})#password와 password_check가 다를 것을 대비하여 error를 지정해준다.
@@ -81,7 +89,7 @@ def signup(request):#역시 GET/POST 방식을 사용하여 구현한다.
 
 def signin(request):#로그인 기능
     if request.method == "GET":
-        return render(request, 'main.html', {'f':SigninForm()} )
+        return render(request, 'signin.html', {'f':SigninForm()} )
 
     elif request.method == "POST":
         form = SigninForm(request.POST)
@@ -92,7 +100,7 @@ def signin(request):#로그인 기능
             login(request, user=u) #u 객체로 로그인해라
             return HttpResponseRedirect(reverse('main'))
         else:
-            return render(request, 'main.html',{'f':form, 'error':'아이디나 비밀번호가 일치하지 않습니다.'})
+            return render(request, 'signin.html',{'f':form, 'error':'아이디나 비밀번호가 일치하지 않습니다.'})
 
 from django.contrib.auth import logout #logout을 처리하기 위해 선언
 
