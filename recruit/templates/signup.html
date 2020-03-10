@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-
-    <div class="pl-5 py-3 ml-5" style="font-weight: bold;">
+<style>
+@media (max-width: 600px){
+    .row, .phone_row{
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+</style>
+    <div class="pl-md-5 py-3 ml-md-5 mt-5 ml-4" style="font-weight: bold;">
         <h3 style="font-weight: bold;"><span style="color: #f09837;">멋쟁이사자처럼</span><span style="color:#707070;"> 서강대학교</span></h3>
         <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
         <h4 style="font-weight: bold; color:#707070;">회원가입</h4>
-        <div class="float-left">
-            <hr style="width: 600px;">
-        </div>
+        <div class="border-bottom mr-5" style="max-width: 600px; height: 10px;"></div>
     </div>
-
 
     <div class="container my-5">
         <form class="mt-3" method="POST" action="">
@@ -88,17 +92,18 @@
                     * 희망 면접일은 제출 후 수정할 수 없습니다
                 </div>
             </div>
-            <h6>개인정보 수집 및 동의약관</h6>
-            <div style="border: 1px solid black; height: 200px; overflow: scroll;">
-                loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            <div class="phone_row">
+                <h6>개인정보 수집 및 동의약관</h6>
+                <div style="border: 1px solid black; height: 200px; overflow: scroll;">
+                    loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+                    loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+                    loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+                </div>
+                <div class="mt-3 pl-4">
+                    <input type="checkbox" id="jb-checkbox" class="custom-control-input">
+                    <label class="custom-control-label" for="jb-checkbox">위 사항을 확인하였습니다</label>
+                </div>
             </div>
-            <div class="mt-3 pl-4">
-                <input type="checkbox" id="jb-checkbox" class="custom-control-input">
-                <label class="custom-control-label" for="jb-checkbox">위 사항을 확인하였습니다</label>
-            </div>
-
             <div class="text-center my-5">
                 <input class="btn btn-lg btn-light btn-outline-dark" type="submit" value=제출하기>
             </div>
