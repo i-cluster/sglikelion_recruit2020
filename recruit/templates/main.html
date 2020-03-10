@@ -38,24 +38,30 @@
     text-decoration:none
   }
 
-  #d-day{
+  .dday{
+    padding: 10px 0;
     font-size: 20px;
     color:black;
   }
 
+  #bold, #d-day{
+    font-weight: 800;
+  }
+
   .login-box{
     padding: 0 40%;
-  
   }
 
 </style>
 
 <div class="main-container">
   <div class="header">
-    <h1 class="text-center" style="font-size: 100px; font-weight: 800">HACK YOUR LIFE</h1> 
-    <h2 class="text-center" sytle="font-size: 50px; font-weight:400">멋쟁이 사자처럼 서강대학교 8기 모집</h2>
-    <h3 class="text-center" id="d-day"></h3>
-    <br>
+    <h1 class="text-center" style="font-size: 100px;" id="bold">HACK YOUR LIFE</h1> 
+    <h2 class="text-center" sytle="font-size: 60px;" id="bold"><span style="color: #f09837;">멋쟁이 사자처럼</span> 서강대학교 <span style="color: #f09837;">8기</span> 모집</h2>
+    <div class="dday text-center">
+      <h5>지원시작까지 남은시간</h5>
+      <h3 class="text-center" id="d-day"></h3>
+    </div>
   </div>
 
 
@@ -63,20 +69,21 @@
     <form class="form-signin" method="POST" action="">
       {% csrf_token %}
 
-    {% if user.is_authenticated %}<!-- 만약 로그인이 되어있는 상태이면 -->
-        <h4 style="color: #707070;">{{user.username}}님 환영합니다.</h3>
-        <a class="a-yellow" style="font-size: 20px;" href="#">회원정보 수정하기 </a>
-        <a class="a-yellow" style="font-size: 20px;" href="{% url 'signout' %}"> 로그아웃</a>
-        <br>
-        <br>
+    {% if user.is_authenticated %}<!-- 로그인이 되어있는 상태 -->
           {% if art %}
             <a class="btn-big btn-outline-warning btn-big" href="{% url 'show' %}">지원서 보러가기</a>
           {% else %}
             <a class="btn btn-outline-warning btn-big" href="#">지원서 작성하기</a> <!--notice로 연결 추가해야함!!!!-->
           {% endif %}
+          <br><br>
+          <h4 style="color: #707070;">{{user.username}}님 환영합니다.</h3>
+            <a class="a-yellow" style="font-size: 20px;" href="#">회원정보 수정하기 |</a>
+            <a class="a-yellow" style="font-size: 20px;" href="{% url 'signout' %}">로그아웃</a>
+            <br>
+            <br>
       <br><br>
 
-    {% else %}
+    {% else %}<!-- 로그인이 안 되어있는 상태 -->
       <div class=login-box>
             {% if error %}
             <p class="text-danger">{{ error }}</p>
@@ -112,9 +119,21 @@
     var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); 
     var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)); 
     var s = Math.floor((distance % (1000 * 60)) / 1000); 
-    
+
+    if(h<10){
+      h = "0"+h;
+    }
+
+    if(m<10){
+      m = "0"+m;
+    }
+
+    if(s<10){
+      s = "0"+s;
+    }
+
     //id가 d-day인 HTML코드에 내용 삽입 
-    document.getElementById("d-day").innerHTML = "접수시작까지 " + d +"일 " + h + "시간 " + m + "분 " + s + "초 남았습니다."; });
+    document.getElementById("d-day").innerHTML = d +"일 " + h + " : " + m + " : " + s ; });
   </script>
   
 {% endblock %}

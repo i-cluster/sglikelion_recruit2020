@@ -25,10 +25,19 @@
     border-color: #f09837;
     }
 
-    .sign{
-            margin: 30px 0 30px 0;
+    .a-yellow{
+    color:#f09837;
+    text-decoration: none !important
     }
 
+    .a-yellow:hover {
+    color: #8a551d;
+    text-decoration:none
+  }
+
+    .sign{
+            margin: 30px 5% 30px 0;
+    }
 </style>
 
     <div class="pl-5 py-3 ml-5" style="font-weight: bold;">
@@ -102,19 +111,18 @@
         <br>
     </div>
 
-    <div class="sign text-center">
+    <div class="sign text-right">
     <p>
-        더 궁금하신 사항은 페이스북/인스타그램 메시지, 공식 이메일을 통해 문의 주시기 바랍니다. 
-        <br>
-        <a href="https://www.facebook.com/likelionsogang" style="font-size: 18px; font-weight: bold;">Facebook</a>
-        <a href="https://www.instagram.com/likelion_sg/" style="font-size: 18px; font-weight: bold;">Instagram</a>
+        더 궁금하신 사항은 페이스북/인스타그램 메시지,<br>
+        공식 이메일을 통해 문의 주시기 바랍니다. 
         <br>
         E-mail: sogang@likelion.org<br>
-
+        <a class="a-yellow" href="https://www.facebook.com/likelionsogang" style="font-size: 18px; font-weight: bold; ">Facebook</a>
+        <a class="a-yellow" href="https://www.instagram.com/likelion_sg/" style="font-size: 18px; font-weight: bold;">Instagram</a>
+        <br>
+        
     </p>
-        <a class="btn btn-outline-warning" href="{% url 'signin' %}">로그인</a> 
-        <a class="btn btn-outline-warning" href="{% url 'signup' %}">회원가입</a> 
-      
+    <a class="a-yellow" href="{% url 'main' %}">돌아가기</a>  
         
     </div>
 
