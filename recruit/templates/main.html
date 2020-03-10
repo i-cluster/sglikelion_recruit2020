@@ -8,16 +8,37 @@
     margin-top: 10%;
   }
 
+  .header{
+    padding: 10px 0 40px 0;
+  }
+
+  .btn{
+    padding: .375rem 1.99rem !important;
+    border-radius: .50rem !important;
+  }
+
   .btn-outline-warning{
     color: #f09837;
     border-color: #f09837;
+    font-size: 30px;
+    font-weight: 600;
   }
 
   .btn-outline-warning:hover {
     color: #fff;
     background-color: #f09837;
     border-color: #f09837;
-}
+  }
+
+  .a-yellow{
+    color:#f09837;
+  }
+
+  .a-yellow:hover {
+    color: #8a551d;
+    text-decoration:none
+  }
+
 </style>
 
 <div class="main-container">
@@ -28,17 +49,23 @@
 
   <div class="sign text-center">
     {% if user.is_authenticated %}<!-- 만약 로그인이 되어있는 상태이면 -->
-        {{user.username}}님 환영합니다.<br><br>
+        <h3 style="color: #707070;">{{user.username}}님 환영합니다.</h3>
+        <a class="a-yellow" style="font-size: 20px;" href="#">회원정보 수정하기 </a>
+        <a class="a-yellow" style="font-size: 20px;" href="{% url 'signout' %}"> 로그아웃</a>
+        <br>
+        <br>
           {% if art %}
             <a class="btn btn-outline-warning" href="{% url 'show' %}">지원서 보러가기</a>
           {% else %}
-            <a class="btn btn-outline-warning" href="{% url 'new' %}">지원서 작성하기</a>
+            <a class="btn btn-outline-warning" href="#">지원서 작성하기</a>
           {% endif %}
-      <a class="btn btn-outline-warning" href="{% url 'signout' %}">로그아웃</a>
+      <br><br>
+
+
     {% else %} <!-- 로그인이 되어있지않다면 -->
-    
-      <a class="btn btn-outline-warning" href="{% url 'signin' %}">로그인</a> 
-      <a class="btn btn-outline-warning" href="{% url 'signup' %}">회원가입</a> 
+      <a class="btn btn-outline-warning" href="{% url 'signin' %}">로그인</a>
+      <br><br>
+      <a class="a-yellow" href="{% url 'signup' %}">회원가입</a> 
     {% endif %}
   </div>
 
