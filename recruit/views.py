@@ -100,6 +100,7 @@ class SignupView(ListView):
 class UserUpdate(UpdateView):
     model = Profile
     template_name = 'u_edit.html'
+    form_class = ProfileForm
 
     def post(self, request, *args, **kwargs):
         profile_form = ProfileForm(request.POST or None)

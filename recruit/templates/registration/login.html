@@ -84,7 +84,7 @@
                 {% endif %}
                 <br><br>
                 <h4 style="color: #707070;">{{ request.user.last_name }}님 환영합니다.</h4>
-                    <a class="a-yellow" style="font-size: 20px;" href="{% url 'profile_update' request.user.id %}">회원정보 수정하기 |</a>
+                    <a class="a-yellow" style="font-size: 20px;" href="{% url 'profile_update' request.user.profile.id %}">회원정보 수정하기 |</a>
                     <a class="a-yellow" style="font-size: 20px;" href="{% url 'signout' %}">로그아웃</a>
                     <br>
                     <br>
