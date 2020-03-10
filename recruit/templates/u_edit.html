@@ -2,9 +2,9 @@
 {% block content %}
 
     <div class="pl-5 py-3 ml-5" style="font-weight: bold;">
-        <h3 style="font-weight: bold;"><span style="color: #F7C142;">멋쟁이사자처럼</span><span style="color:#707070;"> 서강대학교</span></h3>
+        <h3 style="font-weight: bold;"><span style="color: #f09837;">멋쟁이사자처럼</span><span style="color:#707070;"> 서강대학교</span></h3>
         <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
-        <h4 style="font-weight: bold; color:#707070;">회원정보 수정</h4>
+        <h4 style="font-weight: bold; color:#707070;">회원가입</h4>
         <div class="float-left">
             <hr style="width: 600px;">
         </div>
@@ -15,30 +15,9 @@
         <form class="mt-3" method="POST" action="">
             {% csrf_token %}
             <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label">이메일(ID)</label>
+                <label for="lastname" class="col-sm-2 col-form-label">이름</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="staticEmail" name="email" readonly placeholder="{{ request.user.email }}">
-                </div>
-                <div class="col-sm-7" style="color: red;">
-                   * 이메일은 제출 후 수정할 수 없습니다
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
-                <div class="col-sm-3">
-                    <input type="password" class="form-control" id="inputPassword" name="password1">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputPassword2" class="col-sm-2 col-form-label">비밀번호 확인</label>
-                <div class="col-sm-3">
-                    <input type="password" class="form-control" id="inputPassword2" name="password2">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="username" class="col-sm-2 col-form-label">이름</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" id="username" name="username">
+                    <input type="text" class="form-control" id="lastname" name="last_name">
                 </div>
             </div>
             <div class="form-group row">
@@ -56,20 +35,20 @@
             <div class="form-group row">
                 <label for="phone_num" class="col-sm-2 col-form-label">연락처</label>
                 <div class="col-sm-3">
-                    <input type="password" class="form-control" id="phone_num" name="phone_num">
+                    <input type="text" class="form-control" id="phone_num" name="phone">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputPassword2" class="col-sm-2 col-form-label">희망 면접일</label>
                 <div class="col-sm-3 btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-light btn-outline-dark mr-3">
-                        <input type="radio">25(수)
+                        <input name="interview_date" type="radio" value="WED">25(수)
                     </label>
                     <label class="btn btn-light btn-outline-dark mr-3">
-                        <input type="radio">26(목)
+                        <input name="interview_date" value="THUR" type="radio">26(목)
                     </label>
                     <label class="btn btn-light btn-outline-dark">
-                        <input type="radio">28(금)
+                        <input name="interview_date" value="FRI" type="radio">28(금)
                     </label>
                 </div>
                 <div class="col-sm-4" style="color: red;">
@@ -89,7 +68,7 @@
 
             <div class="text-center my-5">
                 <input class="btn btn-lg btn-light btn-outline-dark" type="submit" value=제출하기>
-f            </div>
+            </div>
         </form>
     </div>
 

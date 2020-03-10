@@ -12,31 +12,32 @@
 
     <div class="form-group mb-5">
         <label for="{{ art.q1.id_for_label }}" class="mb-4 h5">1. 질문</label>
-        <div name="q1" class="form-control p-4" style="max-width: 1000px; min-height:400px;" id="id_q1"><pre style="font-family: 'Nanum Gothic', sans-serif !important;">{{ art.q1 }}</pre></div>
+        <div name="q1" class="form-control p-4" style="max-width: 1000px; min-height:400px;" id="id_q1"><pre style="font-family: 'Nanum Gothic', sans-serif !important;">{{ object_list.art.q1 }}</pre></div>
     </div>
     <div class="form-group mb-5">
         <label for="id_q2" class="mb-4 h5">2. 질문</label>
-        <div name="q2" class="form-control p-4" style="max-width: 1000px; min-height:400px;" id="id_q2"><pre style="font-family: 'Nanum Gothic', sans-serif !important;">{{ art.q2 }}</pre></div>
+        <div name="q2" class="form-control p-4" style="max-width: 1000px; min-height:400px;" id="id_q2"><pre style="font-family: 'Nanum Gothic', sans-serif !important;">{{ object_list.art.q2 }}</pre></div>
     </div>
     <div class="form-group mb-5">
         <label for="id_q3" class="mb-4 h5">3. 질문</label>
-        <div name="q3" class="form-control p-4" style="max-width: 1000px; min-height:400px;" id="id_q3"><pre style="font-family: 'Nanum Gothic', sans-serif !important;">{{ art.q3 }}</pre></div>
+        <div name="q3" class="form-control p-4" style="max-width: 1000px; min-height:400px;" id="id_q3"><pre style="font-family: 'Nanum Gothic', sans-serif !important;">{{ object_list.art.q3 }}</pre></div>
     </div>
     <div class="form-group mb-5">
         <label for="id_q4" class="mb-4 h5">4. 질문</label>
-        <div name="q4" class="form-control p-4" style="max-width: 1000px; min-height:400px;" id="id_q4"><pre style="font-family: 'Nanum Gothic', sans-serif !important;">{{ art.q4 }}</pre></div>
+        <div name="q4" class="form-control p-4" style="max-width: 1000px; min-height:400px;" id="id_q4"><pre style="font-family: 'Nanum Gothic', sans-serif !important;">{{ object_list.art.q4 }}</pre></div>
     </div>
     <div class="form-group mb-5">
-        <div class="mb-4 h5">5. 자유제출</div>
-        <div>{{ art.q5.html_name }}</div>
+        <div class="mb-4 h5">5. 첨부파일</div>
+        {% if object_list.art.q5 %}
+            <div>{{ object_list.art.q5 }}</div>
+        {% endif %}
     </div>
-    {% if art.final == False %}
+    {% if object_list.art.final == False %}
     <div class="text-center mt-5 mb-4 pt-5">
         <span style="color: red;">*지원서 제출 후에는 수정할 수 없습니다.</span>
     </div>
     <div class="text-center">
-        
-        <a href="{% url 'edit' %}" class="btn btn-lg btn-light btn-outline-dark mx-1">수정하기</a>
+        <a href="{% url 'edit' object_list.art.id %}" class="btn btn-lg btn-light btn-outline-dark mx-1">수정하기</a>
         <a href="{% url 'submit' %}" class="btn btn-lg btn-light btn-outline-dark mx-1">제출하기</a>
         <a href="{% url 'delete' %}" class="btn btn-lg btn-light btn-outline-dark mx-1">삭제하기</a>
     </div>

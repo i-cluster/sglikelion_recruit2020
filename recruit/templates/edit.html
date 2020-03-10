@@ -13,19 +13,19 @@
     {% csrf_token %}
     <div class="form-group mb-5">
         <label for="id_q1" class="mb-4 h5">1. 질문</label>
-        <textarea name="q1" class="form-control p-4" style="max-width: 1000px; height:400px;" cols="40" rows="10" required="" id="id_q1">{{ art.q1.value }}</textarea>
+        <textarea name="q1" class="form-control p-4" style="max-width: 1000px; height:400px;" cols="40" rows="10" required="" id="id_q1">{{ application.q1 }}</textarea>
     </div>
     <div class="form-group mb-5">
         <label for="id_q2" class="mb-4 h5">2. 질문</label>
-        <textarea name="q2" class="form-control p-4" style="max-width: 1000px; height:400px;" cols="40" rows="10" required="" id="id_q2">{{ art.q2.value }}</textarea>
+        <textarea name="q2" class="form-control p-4" style="max-width: 1000px; height:400px;" cols="40" rows="10" required="" id="id_q2">{{ application.q2 }}</textarea>
     </div>
     <div class="form-group mb-5">
         <label for="id_q3" class="mb-4 h5">3. 질문</label>
-        <textarea name="q3" class="form-control p-4" style="max-width: 1000px; height:400px;" cols="40" rows="10" required="" id="id_q3">{{ art.q3.value }}</textarea>
+        <textarea name="q3" class="form-control p-4" style="max-width: 1000px; height:400px;" cols="40" rows="10" required="" id="id_q3">{{ application.q3 }}</textarea>
     </div>
     <div class="form-group mb-5">
         <label for="id_q4" class="mb-4 h5">4. 질문</label>
-        <textarea name="q4" class="form-control p-4" style="max-width: 1000px; height:400px;" cols="40" rows="10" required="" id="id_q4">{{ art.q4.value }}</textarea>
+        <textarea name="q4" class="form-control p-4" style="max-width: 1000px; height:400px;" cols="40" rows="10" required="" id="id_q4">{{ application.q4 }}</textarea>
     </div>
     <div class="form-group mb-5">
         <div class="mb-4 h5">5. 자유제출</div>

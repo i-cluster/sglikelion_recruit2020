@@ -12,26 +12,44 @@
 {% endblock %}
 
 {% block bootstrap4_before_content %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand pt-2" href="{% url 'main' %}" style="font-size: 30px; font-weight: 800;">LIKE<span style="color: #f09837;">LION</span> </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand pt-2" href="{% url 'main' %}" style="font-size: 30px; font-weight: 800;">LIKE<span style="color: #f09837;">LION</span> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="navbar-collapse collapse w-100 order-2 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link mx-3" href="{% url 'guide' %}" style="font-size: 25px; font-weight: bold;">활동 안내</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mx-3" href="{% url 'faq' %}" style="font-size: 25px; font-weight: bold;">FAQ</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+        <div class="navbar-collapse collapse w-100 order-2 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link mx-3" href="{% url 'guide' %}" style="font-size: 25px; font-weight: bold;">활동 안내</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-3" href="{% url 'faq' %}" style="font-size: 25px; font-weight: bold;">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 {% endblock %}
 {% block bootstrap4_content %}
     <div style="min-height: 70vh;">
+        {% if messages %}
+            <style>
+                .alert-error {
+                    background-image: -webkit-linear-gradient(top, #f2dede 0%, #e7c3c3 100%);
+                    background-image: -o-linear-gradient(top, #f2dede 0%, #e7c3c3 100%);
+                    background-image: -webkit-gradient(linear, left top, left bottom, from(#f2dede), to(#e7c3c3));
+                    background-image: linear-gradient(to bottom, #f2dede 0%, #e7c3c3 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2dede', endColorstr='#ffe7c3c3', GradientType=0);
+                    background-repeat: repeat-x;
+                    border-color: #dca7a7;
+                }
+            </style>
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
         {% block content %}
         {% endblock %}
     </div>
