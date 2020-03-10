@@ -26,24 +26,19 @@
     <h2 class="text-center" sytle="font-size: 50px; font-weight:400">멋쟁이 사자처럼 서강대학교 8기 모집</P> 
   </div>
 
-  <div class="button">
+  <div class="sign text-center">
     {% if user.is_authenticated %}<!-- 만약 로그인이 되어있는 상태이면 -->
-      {{user.last_name}}{{user.first_name}}님 환영합니다.
         {{user.username}}님 환영합니다.<br><br>
           {% if art %}
-            <a href="{% url 'show' %}">지원서 보러가기</a>
+            <a class="btn btn-outline-warning" href="{% url 'show' %}">지원서 보러가기</a>
           {% else %}
-            <a href="{% url 'new' %}">지원서 작성하기</a>
+            <a class="btn btn-outline-warning" href="{% url 'new' %}">지원서 작성하기</a>
           {% endif %}
-            <a href="{% url 'show' %}">멋사소개&FAQ</a><br><br>
-      <a href="{% url 'signout' %}">로그아웃</a>
+      <a class="btn btn-outline-warning" href="{% url 'signout' %}">로그아웃</a>
     {% else %} <!-- 로그인이 되어있지않다면 -->
-    <div class="sign text-center">
+    
       <a class="btn btn-outline-warning" href="{% url 'signin' %}">로그인</a> 
       <a class="btn btn-outline-warning" href="{% url 'signup' %}">회원가입</a> 
-    
-      
-    </div>
     {% endif %}
   </div>
 

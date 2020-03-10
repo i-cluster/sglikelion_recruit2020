@@ -1,15 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="pl-5 py-3 ml-5" style="font-weight: bold;">
+  <h3 style="font-weight: bold;"><span style="color: #f09837;">멋쟁이사자처럼</span><span style="color:#707070;"> 서강대학교</span></h3>
+  <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
+  <h4 style="font-weight: bold; color:#707070;">로그인</h4>
+  <div class="float-left">
+      <hr style="width: 600px;">
+  </div>
+</div>
+
+
 <div class="signin_bg text-center">
   <br>
-  {% if user.is_authenticated %}<!-- 만약 로그인이 되어있는 상태이면 -->
-  <!--{{user.last_name}} {{user.first_name}}님 환영합니다.--> <!-- 다음과같이 출력 -->
-  {{user.username}}님 환영합니다.
-   <!-- <a href="{% url 'signout' %}">로그아웃</a> 로그아웃이 뜨도록 한다. -->
-  {% else %} <!-- 로그인이 되어있지않다면 -->
-  <!-- <a href="{% url 'signin' %}">로그인</a> 로그인과-->
-  <!--  <a href="{% url 'signup' %}">회원가입</a> 회원가입이 뜨도록 한다. -->
-  {% endif %}
-  <hr> <!-- 윗부분(고정) -->
-    <form class="form-signin" method="POST" action="">
+  {% if user.is_authenticated %}
+    <br>
+    {{user.username}}님 환영합니다. 로그인이 되어있습니다. 
+    <br><br><br>
+    <a class="btn btn-outline-warning" href="{% url 'main' %}">홈으로 가기</a> 
+  {% else %}
+  <form class="form-signin" method="POST" action="">
     {% csrf_token %}
         <h1 class="mb-10 font-weight-normal text-center">Hack Your Life</h1>
         {% if user.is_authenticated %}
@@ -33,6 +43,9 @@
           <br><br>
           <a class="bt-20 text-info" href="{% url 'signup'%}">회원가입</a>
         {% endif %}
-        <p class="text-muted">© 2020 서강대 멋사</p>
     </form>
+  {% endif %}
+
 </div>
+
+{% endblock %}

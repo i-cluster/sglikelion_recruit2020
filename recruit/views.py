@@ -90,7 +90,7 @@ def signin(request):#로그인 기능
         u = authenticate(username=id, password=pw)
         if u: #u에 특정 값이 있다면
             login(request, user=u) #u 객체로 로그인해라
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('main'))
         else:
             return render(request, 'signin.html',{'f':form, 'error':'아이디나 비밀번호가 일치하지 않습니다.'})
 
