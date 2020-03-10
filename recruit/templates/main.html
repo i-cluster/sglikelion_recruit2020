@@ -8,6 +8,16 @@
     margin-top: 10%;
   }
 
+  .header{
+    padding: 10px 0 40px 0;
+  }
+
+  .btn{
+    padding: .375rem 1.99rem !important;
+    border-radius: .50rem !important;
+    margin: 20px 0;
+  }
+
   .btn-outline-warning{
     color: #f09837;
     border-color: #f09837;
@@ -17,6 +27,12 @@
     color: #fff;
     background-color: #f09837;
     border-color: #f09837;
+  }
+
+  .btn-big{
+    font-size: 40px !important;
+    font-weight: 500 !important;
+    padding: 10px 40px;
   }
 
   .a-yellow{
@@ -61,9 +77,9 @@
 
     {% if user.is_authenticated %}<!-- 로그인이 되어있는 상태 -->
           {% if art %}
-            <a class="btn btn-outline-warning" href="{% url 'show' %}">지원서 보러가기</a>
+            <a class="btn btn-outline-warning btn-big" href="{% url 'show' %}">지원서 보러가기</a>
           {% else %}
-            <a class="btn btn-outline-warning" href="{% url 'new' %}">지원서 작성하기</a>
+            <a class="btn btn-outline-warning btn-big" href="{% url 'new' %}">지원서 작성하기</a>
           {% endif %}
           <br><br>
           <h4 style="color: #707070;">{{user.profile.phone}}님 환영합니다.</h3>
@@ -129,10 +145,3 @@
 
 
 
-
-
-
-
-
-    
-{% endblock %}
