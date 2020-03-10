@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% block content %}
+    <style>
+        .main-container{
+            margin: 10% 0 0 0;
+        }
+        .button{
+            margin-top: 10%;
+        }
+
+        .header{
+            padding: 10px 0 40px 0;
+        }
+
+        .btn{
+            padding: .375rem 1.99rem !important;
+            border-radius: .50rem !important;
+            margin: 20px 0;
+        }
+
+        .btn-outline-warning{
+            color: #f09837;
+            border-color: #f09837;
+        }
+
+        .btn-outline-warning:hover {
+            color: #fff;
+            background-color: #f09837;
+            border-color: #f09837;
+        }
+
+        .btn-big{
+            font-size: 40px !important;
+            font-weight: 500 !important;
+            padding: 10px 40px;
+        }
+
+        .a-yellow{
+            color:#f09837;
+        }
+
+        .a-yellow:hover {
+            color: #8a551d;
+            text-decoration:none
+        }
+
+        .dday{
+            padding: 10px 0;
+            font-size: 20px;
+            color:black;
+        }
+
+        #bold, #d-day{
+            font-weight: 800;
+        }
+
+        .login-box{
+            padding: 0 40%;
+        }
+
+    </style>
+
+    <div class="main-container">
+        <div class="header">
+            <h1 class="text-center" style="font-size: 100px;" id="bold">HACK YOUR LIFE</h1>
+            <h2 class="text-center" sytle="font-size: 60px;" id="bold"><span style="color: #f09837;">멋쟁이 사자처럼</span> 서강대학교 <span style="color: #f09837;">8기</span> 모집</h2>
+            <div class="dday text-center">
+                <h5>지원시작까지 남은시간</h5>
+                <h3 class="text-center" id="d-day"></h3>
+            </div>
+        </div>
+
+
+        <div class="signin_bg text-center">
+            {% if user.is_authenticated %}<!-- 로그인이 되어있는 상태 -->
+                {% if art %}
+                    {% if art.final is True %}
+                        <a class="btn btn-outline-warning btn-big" href="{% url 'show' %}">지원서 보러가기</a>
+                    {% else %}
+                        <a class="btn btn-outline-warning btn-big" href="{% url 'edit' art.id %}">지원서 수정하기</a>
+                    {% endif %}
+                {% else %}
+                    <a class="btn btn-outline-warning btn-big" href="{% url 'new' %}">지원서 작성하기</a>
+                {% endif %}
+                <br><br>
+                <h4 style="color: #707070;">{{ request.user.last_name }}님 환영합니다.</h4>
+                    <a class="a-yellow" style="font-size: 20px;" href="{% url 'profile_update' request.user.profile.id %}">회원정보 수정하기 |</a>
+                    <a class="a-yellow" style="font-size: 20px;" href="{% url 'signout' %}">로그아웃</a>
+                    <br>
+                    <br>
+                </h4>
+                <br><br>
+
+                {% else %}<!-- 로그인이 안 되어있는 상태 -->
+                <form class='login-box text-center' method="post">
+                    {% csrf_token %}
+                    {% if error %}
+                        <p class="text-danger">{{ error }}</p>
+                    {% endif %}
+                    <label for="username" class="sr-only">Username</label>
+                    <input name="username" style="max-width: 300px;" type="text" id="username" class="form-control" placeholder="아이디" required="" autofocus="">
+                    <br>
+                    <label for="Password" class="sr-only">Password</label>
+                    <input name="password" style="max-width: 300px;" type="password" id="Password" class="form-control" placeholder="비밀번호" required="">
+                    <br>
+                    <input class="btn btn-outline-warning" type="submit" value="로그인">
+                    <br><br>
+                    <a class="a-yellow" href="{% url 'signup' %}">회원가입</a>
+                </form>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <SCRIPT type="text/javascript">
+        var countDownDate = new Date("Mar 16, 2020 06:00:00").getTime();
+
+        var x = setInterval(function() {
+            // 오늘 날짜 등록
+            var now = new Date().getTime();
+
+            // 종료일자에서 현재일자를 뺀 시간
+            var distance = countDownDate - now;
+
+            // 각 변수에 일, 시, 분, 초를 등록
+            var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if(h<10){
+                h = "0"+h;
+            }
+
+            if(m<10){
+                m = "0"+m;
+            }
+
+            if(s<10){
+                s = "0"+s;
+            }
+
+            //id가 d-day인 HTML코드에 내용 삽입
+            document.getElementById("d-day").innerHTML = d +"일 " + h + " : " + m + " : " + s ; });
+    </script>
+
+{% endblock %}
+
+
+

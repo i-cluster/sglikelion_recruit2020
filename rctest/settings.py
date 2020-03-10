@@ -123,3 +123,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/recruit/static/',
 ]
+
+LOGIN_REDIRECT_URL = '/'

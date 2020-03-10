@@ -8,21 +8,32 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Application(models.Model):
-    objects = models.Manager()
-    q1 = models.TextField(default="")
-    q2 = models.TextField(default="")
-    q3 = models.TextField(default="")
-    q4 = models.TextField(default="")
-    date = models.DateTimeField(default=timezone.now)
+    created_by = models.ForeignKey(User, verbose_name='지원자 이름', on_delete=models.CASCADE , blank=True, null=True)
+    q1 = models.TextField(verbose_name='질문1', blank=True, null=True)
+    q2 = models.TextField(verbose_name='질문2', blank=True, null=True)
+    q3 = models.TextField(verbose_name='질문3', blank=True, null=True)
+    q4 = models.TextField(verbose_name='질문4', blank=True, null=True)
+    q5 = models.FileField(upload_to='user', verbose_name='첨부파일', null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, verbose_name='제출 날짜')
     final = models.BooleanField(default=False)
-    author = models.CharField(max_length=30)
 
 class Profile(models.Model):
-    objects = models.Manager()
     user = models.OneToOneField(User, on_delete=models.CASCADE)#유저모델 onetoone
-    phone = models.CharField(max_length=20, blank=True)
-    info = models.CharField(max_length=20, blank=True)
-    
+    phone = models.CharField(max_length=20, blank=True, verbose_name='연락처')
+    major = models.CharField(max_length=255, verbose_name= '전공', null=True, blank=True)
+    semester = models.IntegerField(verbose_name='누적학기', default=1)
+    CLASSIFED_CHOICE_SET = (
+        ('WED', '25(수)'),
+        ('THUR', '26(목)'),
+        ('FRI', '27(금)'),
+    )
+    interview_date = models.CharField(
+        max_length=20,
+        choices=CLASSIFED_CHOICE_SET,
+        default='1',
+        verbose_name='희망 면접 날짜'
+    )
+
 #@receiver(post_save, sender=User)
 #def create_user_profile(sender, instance, created, **kwargs):
  #   if created:

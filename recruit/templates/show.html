@@ -31,31 +31,32 @@ pre{
 <div class="container mt-5">
     <div class="form-group mb-5">
         <label for="id_q1" class="mb-4 h5 font-weight-bold">1. 지원동기와 활동 목표를 기술하세요. (700자)</label>
-        <div name="q1" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q1"><pre>{{ art.q1 }}</pre></div>
+        <div name="q1" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q1"><pre>{{ object_list.art.q1 }}</pre></div>
     </div><br><br>
     <div class="form-group mb-5">
         <label for="id_q2" class="mb-4 h5 font-weight-bold">2. 타인과 협업했던 경험과 그 과정에서 자신이 수행한 역할에 대해 기술하세요. (700자)</label>
-        <div name="q2" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q2"><pre>{{ art.q2 }}</pre></div>
+        <div name="q2" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q2"><pre>{{ object_list.art.q2 }}</pre></div>
     </div><br><br>
     <div class="form-group mb-5">
         <label for="id_q3" class="mb-4 h5 font-weight-bold">3. IT 서비스로 구현하고 싶은 아이디어에 대해 구체적으로 기술하세요.<br>&nbsp&nbsp&nbsp(서비스가 해결하고자 하는 문제와 핵심 기능, 예상되는 사용자 등을 포함할 것) (800자)</label>
-        <div name="q3" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q3"><pre>{{ art.q3 }}</pre></div>
+        <div name="q3" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q3"><pre>{{ object_list.art.q3 }}</pre></div>
     </div><br><br>
     <div class="form-group mb-5">
         <label for="id_q4" class="mb-4 h5 font-weight-bold">4. 이용했던 서비스 중 인상 깊었던 부분이나 불편했던 점은 무엇이었고, 어떻게 발전/개선하면 좋을지 기술하세요. (700자)</label>
-        <div name="q4" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q4"><pre>{{ art.q4 }}</pre></div>
+        <div name="q4" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q4"><pre>{{ object_list.art.q4 }}</pre></div>
     </div><br><br>
     <div class="form-group mb-5">
         <div class="mb-4 h5 font-weight-bold">5. 본인이 했던 활동이나 프로젝트 중 소개하고 싶은 것이 있다면 자유롭게 첨부해주시기 바랍니다. (필수X, 최대 200MB 파일 1개)</div>
-        <div>{{ art.q5.html_name }}</div>
+        {% if object_list.art.q5 %}
+            <div>{{ object_list.art.q5 }}</div>
+        {% endif %}
     </div>
-    {% if art.final == False %}
+    {% if object_list.art.final == False %}
     <div class="text-center mt-5 mb-4 pt-5">
         <span style="color: red;">*지원서 제출 후에는 수정할 수 없습니다.</span>
     </div>
     <div class="text-center">
-        
-        <a href="{% url 'edit' %}" class="btn btn-lg btn-light btn-outline-dark mx-1 mb-2">수정하기</a>
+        <a href="{% url 'edit' object_list.art.id %}" class="btn btn-lg btn-light btn-outline-dark mx-1 mb-2">수정하기</a>
         <a href="{% url 'submit' %}" class="btn btn-lg btn-light btn-outline-dark mx-1 mb-2">제출하기</a>
         <a href="{% url 'delete' %}" class="btn btn-lg btn-light btn-outline-dark mx-1 mb-2">삭제하기</a>
     </div>

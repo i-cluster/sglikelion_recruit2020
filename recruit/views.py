@@ -1,112 +1,125 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-from .models import Application, Profile
-from .forms import ApplicationForm, SignupForm, SigninForm, UserForm, ProfileForm
-from django.contrib.auth.models import User
+from .models import Application, Profile, User
+from django.contrib import messages
+from django.contrib.auth.views import LoginView, LogoutView
+from .forms import ApplicationForm, UserForm, ProfileForm, SignupForm
+from django.contrib.auth.models import User as authUser
+from django.views.generic import (
+    DetailView, ListView, CreateView,
+    DeleteView, UpdateView, View)
 from django.contrib import auth
 from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.hashers import check_password 
+from django.contrib.auth.hashers import check_password
 
 # Create your views here.
 
-def main(request):
-    art = Application.objects.filter(author=request.user)
-    if art:
-        return render(request, 'main.html', {'art':art})
-    else:
-        return render(request, 'main.html')
 
-def new(request):
-    if request.method == 'POST':
-        form = ApplicationForm(request.POST)
-        if form.is_valid():
-            art = form.save(commit=False)
-            art.date = timezone.now()
-            art.author = request.user
-            art.final = False
-            art.save()
-            return redirect('show')
-    else:
-        form = ApplicationForm()
-        return render(request, 'new.html',{'art':form})
+class NewView(CreateView):
+    model = Application
+    form_class = ApplicationForm
+    template_name = 'new.html'
 
-def show(request):
-    art = get_object_or_404(Application, author=request.user)
-    return render(request, 'show.html', {'art':art})
+    def form_valid(self, form):
+        self.object = form.save()
+        user = self.request.user
+        self.object.created_by = user
+        return super().form_valid(form)
 
-def edit(request):
-    art = get_object_or_404(Application, author=request.user)
-    if request.method == 'POST':
-        form = ApplicationForm(request.POST, instance=art)
-        if form.is_valid():
-            art = form.save(commit=False)
-            art.date = timezone.now()
-            art.save()
-            return redirect('show')
-    else:
-        form = ApplicationForm(instance=art)
-        return render(request, 'edit.html',{'art':form})
+    def get_success_url(self):
+        messages.success(self.request, '임시 저장되었습니다.')
+        return reverse('show')
+
+
+class ShowView(ListView):
+    template_name = 'show.html'
+    model = Application
+
+    def get_queryset(self):
+        new_queryset = {}
+        application = Application.objects.get(created_by=self.request.user)
+        new_queryset['art'] = application
+        return new_queryset
+
+
+class EditView(UpdateView):
+    model = Application
+    form_class = ApplicationForm
+    template_name = 'edit.html'
+
+    def get_success_url(self):
+        messages.success(self.request, '임시 저장되었습니다.')
+        return reverse('show')
+
+
+class CustomLoginView(LoginView):
+    def get_context_data(self, **kwargs):
+        new_context = super().get_context_data(**kwargs)
+        try:
+            new_context['art'] = get_object_or_404(Application, created_by=self.request.user)
+        except:
+            pass
+        return new_context
+
 
 def submit(request):
-    art = get_object_or_404(Application, author=request.user)
+    art = get_object_or_404(Application, created_by=request.user)
     art.final = True
     art.save()
-    return render(request, 'show.html', {'art':art})
+    return render(request, 'registration/login.html', {'art':art})
+
 
 def delete(request):
-    art = get_object_or_404(Application, author=request.user)
+    art = get_object_or_404(Application, created_by=request.user)
     art.delete()
-    return render(request, 'main.html')
+    return render(request, 'registration/login.html')
 
-def signup(request):#역시 GET/POST 방식을 사용하여 구현한다.
-    if request.method == "GET":
-        return render(request, 'signup.html', {'f':SignupForm()} )
-        
-    elif request.method == "POST":
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            if form.cleaned_data['password'] == form.cleaned_data['password_check']:
-                new_user = User.objects.create_user(form.cleaned_data['username'],form.cleaned_data['email'],form.cleaned_data['password'])
-                new_user.last_name = form.cleaned_data['last_name']
-                new_user.first_name = form.cleaned_data['first_name']
-                #new_user = User.objects.get(pk=user_id)#유저 모델 onetoone
-                #new_user.phone = form.cleaned_data['phone']#phone
-                #new_user.info = form.cleaned_data['info']#info(학번 학과 이름)
-                new_user.save()
-                phone = request.POST["phone"]#phone
-                user = request.POST["user"]
-                info = request.POST["info"]#info(학번 학과 이름)
-                profile = Profile(user=user, phone=phone, info=info)
-                profile.save()
-                auth.login(request, new_user, profile)
-                return HttpResponseRedirect(reverse('main'))
-            else:
-                return render(request, 'signup.html',{'f':form, 'error':'비밀번호와 비밀번호 확인이 다릅니다.'})#password와 password_check가 다를 것을 대비하여 error를 지정해준다.
-        return render(request, 'signup.html',{'f':form})
 
-def signin(request):#로그인 기능
-    if request.method == "GET":
-        return render(request, 'signin.html', {'f':SigninForm()} )
+class SignupView(ListView):
+    model = Profile
+    template_name = 'signup.html'
 
-    elif request.method == "POST":
-        form = SigninForm(request.POST)
-        id = request.POST.get('username')
-        pw = request.POST.get('password')
-        u = authenticate(username=id, password=pw)
-        if u: #u에 특정 값이 있다면
-            login(request, user=u) #u 객체로 로그인해라
+    def post(self, request, *args, **kwargs):
+        user_form = SignupForm(request.POST or None)
+        profile_form = ProfileForm(request.POST or None)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            messages.success(request, '회원가입 완료. 로그인 해 주세요.')
             return HttpResponseRedirect(reverse('main'))
         else:
-            return render(request, 'signin.html',{'f':form, 'error':'아이디나 비밀번호가 일치하지 않습니다.'})
+            messages.warning(request, '회원가입에 실패했습니다. 다시 작성해주세요')
+            return HttpResponseRedirect(reverse('login'))
+
+
+class UserUpdate(UpdateView):
+    model = Profile
+    template_name = 'u_edit.html'
+    form_class = ProfileForm
+
+    def post(self, request, *args, **kwargs):
+        profile_form = ProfileForm(request.POST or None)
+        if profile_form.is_valid():
+            profile = Profile.objects.get(user=request.user)
+            profile.semester, profile.phone = request.POST['semester'], request.POST['phone']
+            profile.major, profile.interview_date = request.POST['major'], request.POST['interview_date']
+            messages.success(request, '회원 정보 수정 완료')
+            return HttpResponseRedirect(reverse('main'))
+        else:
+            messages.warning(request, '회원 정보 수정에 실패했습니다.')
+            return HttpResponseRedirect(reverse('main'))
+
 
 from django.contrib.auth import logout #logout을 처리하기 위해 선언
 
 def signout(request): #logout 기능
     logout(request) #logout을 수행한다.
-    return HttpResponseRedirect(reverse('signin'))
+    return HttpResponseRedirect(reverse('main'))
 
 def guide(request):
     return render(request, 'guide.html')
