@@ -3,7 +3,7 @@ from django.utils import timezone
 from .models import Application, Profile, User
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
-from .forms import ApplicationForm, UserForm, ProfileForm, SignupForm
+from .forms import ApplicationForm, UserForm, ProfileForm, SignupForm, SigninForm
 from django.contrib.auth.models import User as authUser
 from django.views.generic import (
     DetailView, ListView, CreateView,
@@ -94,7 +94,7 @@ class SignupView(ListView):
             return HttpResponseRedirect(reverse('main'))
         else:
             messages.warning(request, '회원가입에 실패했습니다. 다시 작성해주세요')
-            return HttpResponseRedirect(reverse('login'))
+            return HttpResponseRedirect(reverse('signup'))
 
 
 class UserUpdate(UpdateView):
@@ -113,6 +113,21 @@ class UserUpdate(UpdateView):
         else:
             messages.warning(request, '회원 정보 수정에 실패했습니다.')
             return HttpResponseRedirect(reverse('main'))
+
+def signin(request):#로그인 기능
+    if request.method == "GET":
+        return render(request, 'registration/login.html', {'f':SigninForm()} )
+
+    elif request.method == "POST":
+        form = SigninForm(request.POST)
+        id = request.POST.get('username')
+        pw = request.POST.get('password')
+        u = authenticate(username=id, password=pw)
+        if u: #u에 특정 값이 있다면
+            login(request, user=u) #u 객체로 로그인해라
+            return HttpResponseRedirect(reverse('main'))
+        else:
+            return render(request, 'registration/login.html',{'f':form, 'error':'아이디나 비밀번호가 일치하지 않습니다.'})
 
 
 from django.contrib.auth import logout #logout을 처리하기 위해 선언
