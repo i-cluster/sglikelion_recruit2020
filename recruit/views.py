@@ -81,7 +81,7 @@ def signup(request):#역시 GET/POST 방식을 사용하여 구현한다.
 
 def signin(request):#로그인 기능
     if request.method == "GET":
-        return render(request, 'signin.html', {'f':SigninForm()} )
+        return render(request, 'main.html', {'f':SigninForm()} )
 
     elif request.method == "POST":
         form = SigninForm(request.POST)
@@ -92,7 +92,7 @@ def signin(request):#로그인 기능
             login(request, user=u) #u 객체로 로그인해라
             return HttpResponseRedirect(reverse('main'))
         else:
-            return render(request, 'signin.html',{'f':form, 'error':'아이디나 비밀번호가 일치하지 않습니다.'})
+            return render(request, 'main.html',{'f':form, 'error':'아이디나 비밀번호가 일치하지 않습니다.'})
 
 from django.contrib.auth import logout #logout을 처리하기 위해 선언
 

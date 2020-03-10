@@ -9,19 +9,18 @@
   }
 
   .header{
-    padding: 10px 0 40px 0;
-  }
-
-  .btn{
-    padding: .375rem 1.99rem !important;
-    border-radius: .50rem !important;
+    margin: 20px 0;
   }
 
   .btn-outline-warning{
     color: #f09837;
     border-color: #f09837;
-    font-size: 30px;
-    font-weight: 600;
+  }
+
+  .btn-big{
+    font-size: 40px !important;
+    font-weight: 500 !important;
+    padding: 10px 40px;
   }
 
   .btn-outline-warning:hover {
@@ -39,40 +38,86 @@
     text-decoration:none
   }
 
+  #d-day{
+    font-size: 20px;
+    color:black;
+  }
+
+  .login-box{
+    padding: 0 40%;
+  
+  }
+
 </style>
 
 <div class="main-container">
   <div class="header">
     <h1 class="text-center" style="font-size: 100px; font-weight: 800">HACK YOUR LIFE</h1> 
-    <h2 class="text-center" sytle="font-size: 50px; font-weight:400">멋쟁이 사자처럼 서강대학교 8기 모집</P> 
+    <h2 class="text-center" sytle="font-size: 50px; font-weight:400">멋쟁이 사자처럼 서강대학교 8기 모집</h2>
+    <h3 class="text-center" id="d-day"></h3>
+    <br>
   </div>
 
-  <div class="sign text-center">
+
+  <div class="signin_bg text-center">
+    <form class="form-signin" method="POST" action="">
+      {% csrf_token %}
+
     {% if user.is_authenticated %}<!-- 만약 로그인이 되어있는 상태이면 -->
-        <h3 style="color: #707070;">{{user.username}}님 환영합니다.</h3>
+        <h4 style="color: #707070;">{{user.username}}님 환영합니다.</h3>
         <a class="a-yellow" style="font-size: 20px;" href="#">회원정보 수정하기 </a>
         <a class="a-yellow" style="font-size: 20px;" href="{% url 'signout' %}"> 로그아웃</a>
         <br>
         <br>
           {% if art %}
-            <a class="btn btn-outline-warning" href="{% url 'show' %}">지원서 보러가기</a>
+            <a class="btn-big btn-outline-warning btn-big" href="{% url 'show' %}">지원서 보러가기</a>
           {% else %}
-            <a class="btn btn-outline-warning" href="#">지원서 작성하기</a>
+            <a class="btn btn-outline-warning btn-big" href="#">지원서 작성하기</a> <!--notice로 연결 추가해야함!!!!-->
           {% endif %}
       <br><br>
 
-
-    {% else %} <!-- 로그인이 되어있지않다면 -->
-      <a class="btn btn-outline-warning" href="{% url 'signin' %}">로그인</a>
-      <br><br>
-      <a class="a-yellow" href="{% url 'signup' %}">회원가입</a> 
+    {% else %}
+      <div class=login-box>
+            {% if error %}
+            <p class="text-danger">{{ error }}</p>
+            {% endif %}
+            <label for="{{ f.username.id_for_label }}" class="sr-only">User Name</label>
+            <input name="{{ f.username.html_name }}" type="username" id="{{ f.username.id_for_label }}" class="form-control" placeholder="아이디" required="" autofocus="">
+            <br>
+            <label for="{{ f.password.id_for_label }}" class="sr-only">Password</label>
+            <input name="{{ f.password.html_name }}" type="password" id="{{ f.password.id_for_label }}" class="form-control" placeholder="비밀번호" required="">
+            <br>
+            <input class="btn btn-outline-warning" type="submit" value="로그인">
+            <br><br>
+            <a class="a-yellow" href="{% url 'signup' %}">회원가입</a>
+        </div>
     {% endif %}
+      </form>
   </div>
-
 </div>
 
+<SCRIPT type="text/javascript">
 
-
+  var countDownDate = new Date("Mar 16, 2020 06:00:00").getTime(); 
+  
+  var x = setInterval(function() { 
+    // 오늘 날짜 등록 
+    var now = new Date().getTime(); 
+    
+    // 종료일자에서 현재일자를 뺀 시간 
+    var distance = countDownDate - now; 
+    
+    // 각 변수에 일, 시, 분, 초를 등록 
+    var d = Math.floor(distance / (1000 * 60 * 60 * 24)); 
+    var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); 
+    var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)); 
+    var s = Math.floor((distance % (1000 * 60)) / 1000); 
+    
+    //id가 d-day인 HTML코드에 내용 삽입 
+    document.getElementById("d-day").innerHTML = "접수시작까지 " + d +"일 " + h + "시간 " + m + "분 " + s + "초 남았습니다."; });
+  </script>
+  
+{% endblock %}
 
 
 
@@ -82,4 +127,3 @@
 
 
     
-{% endblock %}
