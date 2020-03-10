@@ -8,19 +8,9 @@
     margin-top: 10%;
   }
 
-  .header{
-    margin: 20px 0;
-  }
-
   .btn-outline-warning{
     color: #f09837;
     border-color: #f09837;
-  }
-
-  .btn-big{
-    font-size: 40px !important;
-    font-weight: 500 !important;
-    padding: 10px 40px;
   }
 
   .btn-outline-warning:hover {
@@ -71,12 +61,12 @@
 
     {% if user.is_authenticated %}<!-- 로그인이 되어있는 상태 -->
           {% if art %}
-            <a class="btn-big btn-outline-warning btn-big" href="{% url 'show' %}">지원서 보러가기</a>
+            <a class="btn btn-outline-warning" href="{% url 'show' %}">지원서 보러가기</a>
           {% else %}
-            <a class="btn btn-outline-warning btn-big" href="#">지원서 작성하기</a> <!--notice로 연결 추가해야함!!!!-->
+            <a class="btn btn-outline-warning" href="{% url 'new' %}">지원서 작성하기</a>
           {% endif %}
           <br><br>
-          <h4 style="color: #707070;">{{user.username}}님 환영합니다.</h3>
+          <h4 style="color: #707070;">{{user.profile.phone}}님 환영합니다.</h3>
             <a class="a-yellow" style="font-size: 20px;" href="#">회원정보 수정하기 |</a>
             <a class="a-yellow" style="font-size: 20px;" href="{% url 'signout' %}">로그아웃</a>
             <br>
@@ -99,12 +89,11 @@
             <a class="a-yellow" href="{% url 'signup' %}">회원가입</a>
         </div>
     {% endif %}
-      </form>
   </div>
+
 </div>
 
 <SCRIPT type="text/javascript">
-
   var countDownDate = new Date("Mar 16, 2020 06:00:00").getTime(); 
   
   var x = setInterval(function() { 
@@ -134,7 +123,7 @@
 
     //id가 d-day인 HTML코드에 내용 삽입 
     document.getElementById("d-day").innerHTML = d +"일 " + h + " : " + m + " : " + s ; });
-  </script>
+</script>
   
 {% endblock %}
 
@@ -146,3 +135,4 @@
 
 
     
+{% endblock %}
