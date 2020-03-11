@@ -97,11 +97,11 @@
         }
     </style>
 
-    {% load static %}
+    {% comment %} {% load static %}
     <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
         <source src='{% static "video.mp4" %}' type="video/mp4"/>
         비디오 지원 안함
-    </video>
+    </video> {% endcomment %}
 
     <div class="main-container">
         <div class="header">

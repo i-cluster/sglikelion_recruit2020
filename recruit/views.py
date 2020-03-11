@@ -122,22 +122,6 @@ class UserUpdate(UpdateView):
             messages.warning(request, '회원 정보 수정에 실패했습니다.')
             return HttpResponseRedirect(reverse('main'))
 
-class CustomLoginview(LoginView):#로그인 기능
-    template_name = 'registration/login.html'
-    form_class = UserForm
-
-    def get_context_data(self, **kwargs):
-        new_context = super().get_context_data(**kwargs)
-        if self.request.user.is_authenticated:
-            new_context['start'] = datetime.strptime("2020-03-10 20:34:00", '%Y-%m-%d %H:%M:%S')
-            new_context['end'] = datetime.strptime("2020-03-10 20:34:10", '%Y-%m-%d %H:%M:%S')
-            new_context['now'] = timezone.localtime()
-            try:
-                new_context['art'] = get_object_or_404(Application, created_by=self.request.user)
-            except:
-                pass
-        return new_context
-
 
 from django.contrib.auth import logout #logout을 처리하기 위해 선언
 
