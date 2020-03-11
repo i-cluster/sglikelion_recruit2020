@@ -1,64 +1,64 @@
 {% extends 'base.html' %}
 {% block content %}
-    <style>
-        .main-container{
-            margin: 10% 0 0 0;
-        }
-        .button{
-            margin-top: 10%;
-        }
+<style>
+    .main-container{
+        margin: 5% 0 0 0;
+    }
+    .button{
+        margin-top: 10%;
+    }
 
-        .header{
-            padding: 10px 0 40px 0;
-        }
+    .header{
+        padding: 0 0 40px 0;
+    }
 
-        .btn{
-            padding: .375rem 1.99rem !important;
-            border-radius: .50rem !important;
-            margin: 20px 0;
-        }
+    .btn{
+        padding: .375rem 1.99rem !important;
+        border-radius: .50rem !important;
+        margin: 20px 0;
+    }
 
-        .btn-outline-warning{
-            color: #f09837;
-            border-color: #f09837;
-        }
+    .btn-outline-warning{
+        color: #f09837;
+        border-color: #f09837;
+    }
 
-        .btn-outline-warning:hover {
-            color: #fff;
-            background-color: #f09837;
-            border-color: #f09837;
-        }
+    .btn-outline-warning:hover {
+        color: #fff;
+        background-color: #f09837;
+        border-color: #f09837;
+    }
 
-        .btn-big{
-            font-size: 40px !important;
-            font-weight: 500 !important;
-            padding: 10px 40px;
-        }
+    .btn-big{
+        font-size: 40px !important;
+        font-weight: 500 !important;
+        padding: 10px 40px;
+    }
 
-        .a-yellow{
-            color:#f09837;
-        }
+    .a-yellow{
+        color:#f09837;
+    }
 
-        .a-yellow:hover {
-            color: #8a551d;
-            text-decoration:none
-        }
+    .a-yellow:hover {
+        color: #8a551d;
+        text-decoration:none
+    }
 
-        .dday{
-            padding: 10px 0;
-            font-size: 20px;
-            color:black;
-        }
+    .dday{
+        padding: 10px 0;
+        font-size: 20px;
+        color:black;
+    }
 
-        #bold, #d-day{
-            font-weight: 800;
-        }
+    #bold, #d-day{
+        font-weight: 800;
+    }
 
-        .login-box{
-            padding: 0 40%;
-        }
+    .login-box{
+        padding: 0 40%;
+    }
 
-    </style>
+</style>
 
     <div class="main-container">
         <div class="header">
@@ -69,7 +69,6 @@
                 <h3 class="text-center" id="d-day"></h3>
             </div>
         </div>
-
 
         <div class="signin_bg text-center">
             {% if user.is_authenticated %}<!-- 로그인이 되어있는 상태 -->
@@ -86,10 +85,8 @@
                 <h4 style="color: #707070;">{{ request.user.last_name }}님 환영합니다.</h4>
                     <a class="a-yellow" style="font-size: 20px;" href="{% url 'profile_update' request.user.profile.id %}">회원정보 수정하기 |</a>
                     <a class="a-yellow" style="font-size: 20px;" href="{% url 'signout' %}">로그아웃</a>
-                    <br>
-                    <br>
-                </h4>
-                <br><br>
+                <br>
+                <br>
 
                 {% else %}<!-- 로그인이 안 되어있는 상태 -->
                 <form class='login-box text-center' method="post">
@@ -102,14 +99,14 @@
                     <br>
                     <label for="Password" class="sr-only">Password</label>
                     <input name="password" style="max-width: 300px;" type="password" id="Password" class="form-control" placeholder="비밀번호" required="">
-                    <br>
                     <input class="btn btn-outline-warning" type="submit" value="로그인">
-                    <br><br>
+                    <br>
                     <a class="a-yellow" href="{% url 'signup' %}">회원가입</a>
                 </form>
+                <br>
             {% endif %}
-        </div>
 
+        </div>
     </div>
 
     <SCRIPT type="text/javascript">
