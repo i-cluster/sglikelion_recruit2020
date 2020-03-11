@@ -16,12 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from recruit import views
-from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
-#from django_registration.backends.one_step.views import RegistrationView # 메일인증없이 1 step
-from django.contrib.auth.views import LoginView, LogoutView
-#
+
+
 urlpatterns = [
                   path('signup/', views.SignupView.as_view(), name='signup'),
                   path('admin/', admin.site.urls),
@@ -35,5 +33,4 @@ urlpatterns = [
                   path('delete', views.delete, name="delete"),
                   path('guide', views.guide, name="guide"),
                   path('faq', views.faq, name="faq"),
-
-              ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
