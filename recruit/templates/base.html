@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.css">
     <style>
         body {font-family: 'NanumSquare';}
+        @media (max-width: 600px){
+            li a{
+                font-size: 22px !important;
+            }
+        }
     </style>
     {% block base_extra_head %}
     {% endblock %}
@@ -23,11 +28,11 @@
                 <li class="nav-item">
                     <a class="nav-link mx-3" href="{% url 'guide' %}" style="font-size: 25px; font-weight: bold;">활동 안내</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mr-3">
                     <a class="nav-link mx-3" href="{% url 'faq' %}" style="font-size: 25px; font-weight: bold;">FAQ</a>
                 </li>
                 {% if user.is_authenticated %}
-                <li class="nav-item">
+                <li class="nav-item border-left">
                     <a class="nav-link mx-3 h-100" href="{% url 'profile_update' request.user.profile.id %}" style="font-size: 20px; font-weight: bold; line-height: 37px;">회원정보 수정하기</a>
                 </li>
                 {% endif %}
