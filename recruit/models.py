@@ -1,9 +1,6 @@
 from  __future__ import unicode_literals
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
-#from django.db.models.signals import post_save
-#from django.dispatch import receiver
 
 # Create your models here.
 
@@ -16,6 +13,10 @@ class Application(models.Model):
     q5 = models.FileField(upload_to='user', verbose_name='첨부파일', null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, verbose_name='제출 날짜')
     final = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.created_by.last_name) + '의 지원서'
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)#유저모델 onetoone
@@ -30,15 +31,9 @@ class Profile(models.Model):
     interview_date = models.CharField(
         max_length=20,
         choices=CLASSIFED_CHOICE_SET,
-        default='1',
+        default='WED',
         verbose_name='희망 면접 날짜'
     )
 
-#@receiver(post_save, sender=User)
-#def create_user_profile(sender, instance, created, **kwargs):
- #   if created:
-  #      Profile.objects.create(user=instance)
-
-#@receiver(post_save, sender=User)
-#def save_user_profile(sender, instance, **kwargs):
- #   instance.profile.save()
+    def __str__(self):
+        return str(self.user.last_name) + '의 프로필'
