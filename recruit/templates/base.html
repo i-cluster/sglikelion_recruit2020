@@ -18,7 +18,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="navbar-collapse collapse w-100 order-2 dual-collapse2">
+        <div class="navbar-collapse collapse w-100 order-2 dual-collapse2" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link mx-3" href="{% url 'guide' %}" style="font-size: 25px; font-weight: bold;">활동 안내</a>
@@ -26,9 +26,15 @@
                 <li class="nav-item">
                     <a class="nav-link mx-3" href="{% url 'faq' %}" style="font-size: 25px; font-weight: bold;">FAQ</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link mx-3" href="{% url 'profile_update' request.user.profile.id %}" style="font-size: 20px; font-weight: bold;">회원정보 수정하기</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
+
 {% endblock %}
 {% block bootstrap4_content %}
     <div style="min-height: 70vh;">
