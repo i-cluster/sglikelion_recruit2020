@@ -14,6 +14,7 @@ from django.urls.base import reverse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
+from datetime import datetime
 
 
 
@@ -124,8 +125,11 @@ class UserUpdate(UpdateView):
             return HttpResponseRedirect(reverse('main'))
 
 def signin(request):#로그인 기능
+    start = datetime.strptime("2020-03-10 20:34:00", '%Y-%m-%d %H:%M:%S')
+    end = datetime.strptime("2020-03-10 20:34:10", '%Y-%m-%d %H:%M:%S')
+    now = timezone.localtime()
     if request.method == "GET":
-        return render(request, 'registration/login.html', {'f':SigninForm()} )
+        return render(request, 'registration/login.html', {'f':SigninForm(),'start':start, 'end':end, 'now':now} )
 
     elif request.method == "POST":
         form = SigninForm(request.POST)
@@ -134,7 +138,7 @@ def signin(request):#로그인 기능
         u = authenticate(username=id, password=pw)
         if u: #u에 특정 값이 있다면
             login(request, user=u) #u 객체로 로그인해라
-            return HttpResponseRedirect(reverse('main'))
+            return HttpResponseRedirect(reverse('main', {'start':start, 'end':end, 'now':now}))
         else:
             return render(request, 'registration/login.html',{'f':form, 'error':'아이디나 비밀번호가 일치하지 않습니다.'})
 

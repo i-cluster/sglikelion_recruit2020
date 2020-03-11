@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
 <style>
  #id_q1, #id_q2, #id_q3, #id_q4{
     max-width: 1000px; 
@@ -37,18 +41,22 @@
     <div class="form-group mb-5">
         <label for="id_q1" class="mb-5 h5">1. 지원동기와 활동 목표를 기술하세요. (700자)</label>
         <textarea name="q1" class="form-control p-4" id="id_q1"></textarea>
+        (<span id="counter_q1">###</span>자)
     </div><br>
     <div class="form-group mb-5">
         <label for="id_q2" class="mb-5 h5">2. 타인과 협업했던 경험과 그 과정에서 자신이 수행한 역할에 대해 기술하세요. (700자)</label>
         <textarea name="q2" class="form-control p-4" id="id_q2"></textarea>
+        (<span id="counter_q2">###</span>자)
     </div><br>
     <div class="form-group mb-5">
         <label for="id_q3" class="mb-5 h5">3. IT 서비스로 구현하고 싶은 아이디어에 대해 구체적으로 기술하세요.<br>&nbsp&nbsp&nbsp(서비스가 해결하고자 하는 문제와 핵심 기능, 예상되는 사용자 등을 포함할 것) (800자)</label>
         <textarea name="q3" class="form-control p-4" id="id_q3"></textarea>
+        (<span id="counter_q3">###</span>자)
     </div><br>
     <div class="form-group mb-5">
         <label for="id_q4" class="mb-5 h5">4. 이용했던 서비스 중 인상 깊었던 부분이나 불편했던 점은 무엇이었고, 어떻게 발전/개선하면 좋을지 기술하세요. (700자)</label>
         <textarea name="q4" class="form-control p-4" id="id_q4"></textarea>
+        (<span id="counter_q4">###</span>자)
     </div><br>
     <div class="form-group mb-5">
         <div class="mb-5 h5">5. 본인이 했던 활동이나 프로젝트 중 소개하고 싶은 것이 있다면 자유롭게 첨부해주시기 바랍니다. (필수X, 최대 200MB 파일 1개)</div>
@@ -64,7 +72,53 @@
 </form>
 </div>
 
+<script type="text/javascript">
+    $(function() {
+      $('#id_q1').keyup(function (e){
+          var content = $(this).val().length;
+          $('#counter_q1').html(content + '/700');
+          if(content<=700){
+              $('#counter_q1').css('color','black'); 
+          }else{
+              $('#counter_q1').css('color','red');
+          }
+      });
+      $('#id_q1').keyup();
 
+      $('#id_q2').keyup(function (e){
+          var content = $(this).val().length;
+          $('#counter_q2').html(content + '/700');
+          if(content<=700){
+              $('#counter_q2').css('color','black'); 
+          }else{
+              $('#counter_q2').css('color','red');
+          }
+      });
+      $('#id_q2').keyup();
+
+      $('#id_q3').keyup(function (e){
+          var content = $(this).val().length;
+          $('#counter_q3').html(content + '/700');
+          if(content<=700){
+              $('#counter_q3').css('color','black'); 
+          }else{
+              $('#counter_q3').css('color','red');
+          }
+      });
+      $('#id_q3').keyup();
+
+      $('#id_q4').keyup(function (e){
+          var content = $(this).val().length;
+          $('#counter_q4').html(content + '/700');
+          if(content<=700){
+              $('#counter_q4').css('color','black'); 
+          }else{
+              $('#counter_q4').css('color','red');
+          }
+      });
+      $('#id_q4').keyup();
+    });
+</script>
 
 
 

@@ -87,8 +87,8 @@
 
     <div class="main-container">
         <div class="header">
-            <h1 class="text-center" style="font-size: 100px;" id="bold">HACK YOUR LIFE</h1>
-            <h2 class="text-center" sytle="font-size: 60px;" id="bold"><span class="first_line" style="color: #f09837;">멋쟁이 사자처럼</span> 서강대학교 <span style="color: #f09837;">8기</span> 모집</h2>
+            <h1 class="text-center" style="font-size: 90px;" id="bold">HACK YOUR LIFE</h1>
+            <h2 class="text-center" sytle="font-size: 60px;" id="bold"><span class="first_line" style="color: #f09837;">멋쟁이 사자처럼</span> 서강대학교 <span style="color: #f09837;">8기</span> 리크루팅</h2>
             <div class="dday text-center">
                 <h5>지원시작까지 남은시간</h5>
                 <h3 class="text-center" id="d-day"></h3>
@@ -96,41 +96,44 @@
         </div>
 
         <div class="signin_bg text-center">
-            {% if user.is_authenticated %}<!-- 로그인이 되어있는 상태 -->
-                {% if art %}
-                    {% if art.final is True %}
-                        <a class="btn btn-outline-warning btn-big btn-phone" href="{% url 'show' %}">지원서 보러가기</a>
+            {% if now|date:"YmdHi" < start|date:"YmdHi" %}
+                지원 준비중입니다.
+            {% else %}
+                {% if user.is_authenticated %}<!-- 로그인이 되어있는 상태 -->
+                    {% if art %}
+                        {% if art.final is True %}
+                            <a class="btn btn-outline-warning btn-big btn-phone" href="{% url 'show' %}">지원서 보러가기</a>
+                        {% else %}
+                            <a class="btn btn-outline-warning btn-big btn-phone" href="{% url 'edit' art.id %}">지원서 수정하기</a>
+                        {% endif %}
                     {% else %}
-                        <a class="btn btn-outline-warning btn-big btn-phone" href="{% url 'edit' art.id %}">지원서 수정하기</a>
+                        <a class="btn btn-outline-warning btn-big btn-phone" href="{% url 'new' %}">지원서 작성하기</a>
                     {% endif %}
-                {% else %}
-                    <a class="btn btn-outline-warning btn-big btn-phone" href="{% url 'new' %}">지원서 작성하기</a>
-                {% endif %}
-                <br><br>
-                <h4 style="color: #707070;">{{ request.user.last_name }}님 환영합니다.</h4>
-                <!--<a class="a-yellow" style="font-size: 20px;" href="{% url 'profile_update' request.user.profile.id %}">회원정보 수정하기 |</a>-->
-                    <a class="a-yellow" style="font-size: 20px;" href="{% url 'signout' %}">로그아웃</a>
-                <br>
-                <br>
+                    <br><br>
+                    <h4 style="color: #707070;">{{ request.user.last_name }}님 환영합니다.</h4>
+                    <!--<a class="a-yellow" style="font-size: 20px;" href="{% url 'profile_update' request.user.profile.id %}">회원정보 수정하기 |</a>-->
+                        <a class="a-yellow" style="font-size: 20px;" href="{% url 'signout' %}">로그아웃</a>
+                    <br>
+                    <br>
 
                 {% else %}<!-- 로그인이 안 되어있는 상태 -->
-                <form class='' method="post">
-                    {% csrf_token %}
-                    {% if error %}
-                        <p class="text-danger">{{ error }}</p>
-                    {% endif %}
-                    <label for="username" class="sr-only">Username</label>
-                    <input name="username" style="max-width: 300px;" type="text" id="username" class="form-control mx-auto" placeholder="아이디" required="" autofocus="">
+                    <form class='' method="post">
+                        {% csrf_token %}
+                        {% if error %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endif %}
+                        <label for="username" class="sr-only">Username</label>
+                        <input name="username" style="max-width: 300px;" type="text" id="username" class="form-control mx-auto" placeholder="아이디" required="" autofocus="">
+                        <br>
+                        <label for="Password" class="sr-only">Password</label>
+                        <input name="password" style="max-width: 300px;" type="password" id="Password" class="form-control mx-auto" placeholder="비밀번호" required="">
+                        <input class="btn btn-outline-warning" type="submit" value="로그인">
+                        <br>
+                        <a class="a-yellow" href="{% url 'signup' %}">회원가입</a>
+                    </form>
                     <br>
-                    <label for="Password" class="sr-only">Password</label>
-                    <input name="password" style="max-width: 300px;" type="password" id="Password" class="form-control mx-auto" placeholder="비밀번호" required="">
-                    <input class="btn btn-outline-warning" type="submit" value="로그인">
-                    <br>
-                    <a class="a-yellow" href="{% url 'signup' %}">회원가입</a>
-                </form>
-                <br>
+                {% endif %}
             {% endif %}
-
         </div>
     </div>
 
