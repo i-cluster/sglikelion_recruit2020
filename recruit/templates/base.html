@@ -28,7 +28,7 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link mx-3" href="{% url 'profile_update' request.user.profile.id %}" style="font-size: 20px; font-weight: bold;">회원정보 수정하기</a>
+                    <a class="nav-link mx-3 h-100" href="{% url 'profile_update' request.user.profile.id %}" style="font-size: 20px; font-weight: bold; line-height: 37px;">회원정보 수정하기</a>
                 </li>
                 {% endif %}
             </ul>
