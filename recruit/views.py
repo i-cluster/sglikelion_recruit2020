@@ -15,6 +15,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
 
+
+
 # Create your views here.
 
 
@@ -82,14 +84,21 @@ class SignupView(ListView):
     model = Profile
     template_name = 'signup.html'
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs): 
         user_form = SignupForm(request.POST or None)
         profile_form = ProfileForm(request.POST or None)
         if user_form.is_valid() and profile_form.is_valid():
+            user = User.objects.create_user(
+                username=request.POST["username"], password=request.POST["password1"])
+            last_name = request.POST["last_name"]
+            email = request.POST["email"]
             user = user_form.save()
             profile = profile_form.save(commit=False)
+            profile = Profile.objects.create_user(
+                major=request.POST["major"], semester=request.POST["semester"], phone=request.POST["phone"], interview_date=request.POST["interview_date"])
             profile.user = user
             profile.save()
+            auth.login(request, user, profile)
             messages.success(request, '회원가입 완료. 로그인 해 주세요.')
             return HttpResponseRedirect(reverse('main'))
         else:
