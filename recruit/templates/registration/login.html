@@ -83,7 +83,25 @@
             text-align: center !important;
        }
     }
+        #videobcg{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000;
+            overflow: hidden;
+            filter: brightness(20%)
+        }
     </style>
+
+    {% load static %}
+    <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+        <source src='{% static "video.mp4" %}' type="video/mp4"/>
+        비디오 지원 안함
+    </video>
 
     <div class="main-container">
         <div class="header">
