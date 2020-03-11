@@ -59,8 +59,13 @@ class EditView(UpdateView):
 
 
 class CustomLoginView(LoginView):
+    context_object_name = 'new_context'
+
     def get_context_data(self, **kwargs):
         new_context = super().get_context_data(**kwargs)
+        new_context['start'] = datetime.strptime("2020-03-10 20:34:00", '%Y-%m-%d %H:%M:%S')
+        new_context['end'] = datetime.strptime("2020-03-10 20:34:10", '%Y-%m-%d %H:%M:%S')
+        new_context['now'] = timezone.localtime()
         try:
             new_context['art'] = get_object_or_404(Application, created_by=self.request.user)
         except:
@@ -97,7 +102,7 @@ class SignupView(ListView):
             return HttpResponseRedirect(reverse('main'))
         else:
             messages.warning(request, '회원가입에 실패했습니다. 다시 작성해주세요')
-            return HttpResponseRedirect(reverse('login'))
+            return HttpResponseRedirect(reverse('signup'))
 
 
 class UserUpdate(UpdateView):
@@ -117,23 +122,21 @@ class UserUpdate(UpdateView):
             messages.warning(request, '회원 정보 수정에 실패했습니다.')
             return HttpResponseRedirect(reverse('main'))
 
-def signin(request):#로그인 기능
-    start = datetime.strptime("2020-03-10 20:34:00", '%Y-%m-%d %H:%M:%S')
-    end = datetime.strptime("2020-03-10 20:34:10", '%Y-%m-%d %H:%M:%S')
-    now = timezone.localtime()
-    if request.method == "GET":
-        return render(request, 'registration/login.html', {'f':SigninForm(),'start':start, 'end':end, 'now':now} )
+class CustomLoginview(LoginView):#로그인 기능
+    template_name = 'registration/login.html'
+    form_class = UserForm
 
-    elif request.method == "POST":
-        form = SigninForm(request.POST)
-        id = request.POST.get('username')
-        pw = request.POST.get('password')
-        u = authenticate(username=id, password=pw)
-        if u: #u에 특정 값이 있다면
-            login(request, user=u) #u 객체로 로그인해라
-            return HttpResponseRedirect(reverse('main', {'start':start, 'end':end, 'now':now}))
-        else:
-            return render(request, 'registration/login.html',{'f':form, 'error':'아이디나 비밀번호가 일치하지 않습니다.'})
+    def get_context_data(self, **kwargs):
+        new_context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            new_context['start'] = datetime.strptime("2020-03-10 20:34:00", '%Y-%m-%d %H:%M:%S')
+            new_context['end'] = datetime.strptime("2020-03-10 20:34:10", '%Y-%m-%d %H:%M:%S')
+            new_context['now'] = timezone.localtime()
+            try:
+                new_context['art'] = get_object_or_404(Application, created_by=self.request.user)
+            except:
+                pass
+        return new_context
 
 
 from django.contrib.auth import logout #logout을 처리하기 위해 선언
