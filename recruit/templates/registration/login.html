@@ -70,7 +70,17 @@
         border-width: 0.1px;
         color: white;
     }
-   
+@media (max-width: 991px){
+    #side-menu{
+     background-color: rgba(0, 0, 0, 0.9);
+    }
+    #side-menu .nav-link{
+    color: white !important;
+    }
+    #side-menu .close{
+        color: white !important;
+    }
+} 
 @media (max-width: 600px){
     .form-control{
         width: 220px !important;
@@ -79,12 +89,14 @@
         max-width: 340px !important;
         margin-right: auto !important;
         margin-left: auto !important;
+        padding-bottom: 35px;
     }
     h1{
         font-size: 57px !important;
+        margin-bottom: 50px;
     }
     h2, h3{
-        font-size: 25px !important;
+        font-size: 23px !important;
     }
     .first_line{
         display: block !important;
@@ -97,7 +109,7 @@
         text-align: center !important;
     }
     #likelion_video{
-       margin-top: 61px;
+       margin-top: 140px;
     }
 }
     #likelion_video{
@@ -218,10 +230,12 @@
         if($("video").length){
             $(document).ready(function(){
                 $(".navbar-light").removeClass('bg-light');
-                $(".navbar-toggler").removeClass('bg-dark');
+                $(".navbar-toggler").removeClass('bg-light');
+                $(".navbar-toggler").addClass('bg-dark');
                 $(".navbar-light").css('background-color','rgba(1,1,1,0)');
-                $(".navbar-brand, .nav-link, .footer, .navbar-toggler").css('color', 'white');
-            });
+                $(".navbar-brand, .nav-link, .footer").css('color', 'white');
+                $(".alert").css({'color': 'white', 'background-color':' rgba(0, 0, 0, 0.4)'});
+            });   
         }
 </script>
 

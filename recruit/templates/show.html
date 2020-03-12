@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <style>
+    .a-yellow{
+    color:#f09837;
+    }
 
+    .a-yellow:hover {
+    color: #8a551d;
+    text-decoration:none
+    }
     pre{
         font-family: 'Nanum Gothic', sans-serif !important; 
         white-space: pre-wrap;
@@ -72,7 +79,7 @@
             </div>
         {% endif %}
     {% endif %}<br><br><br><br>
-    <a href="{% url 'main' %}" class="mr-5 a-yellow" style="float: right; color: black;" >돌아가기</a>
+    <a href="{% url 'main' %}" class="mr-5 a-yellow" style="float: right;" >돌아가기</a>
     <br>
 </div>
 
