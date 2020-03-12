@@ -218,8 +218,9 @@
         if($("video").length){
             $(document).ready(function(){
                 $(".navbar-light").removeClass('bg-light');
+                $(".navbar-toggler").removeClass('bg-dark');
                 $(".navbar-light").css('background-color','rgba(1,1,1,0)');
-                $(".navbar-brand, .nav-link").css('color', 'white');
+                $(".navbar-brand, .nav-link, .footer, .navbar-toggler").css('color', 'white');
             });
         }
 </script>
