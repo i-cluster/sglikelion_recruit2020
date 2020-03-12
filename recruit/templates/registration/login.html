@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <style>
         .main-container{
@@ -82,10 +83,20 @@
             padding: 5px 0 !important;
             text-align: center !important;
        }
+        #likelion_video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+        }
     }
     </style>
+    <video autoplay muted loop id="likelion_video">
+        <source src="{% static 'img/promotion2.mp4' %}" type="video/mp4">
+    </video>
 
-    <div class="main-container">
+    <div class="main-container" style="background: rgba(255,255,255,0.80);">
+
         <div class="header">
             <h1 class="text-center" style="font-size: 90px;" id="bold">HACK YOUR LIFE</h1>
             <h2 class="text-center" sytle="font-size: 60px;" id="bold"><span class="first_line" style="color: #f09837;">멋쟁이 사자처럼</span> 서강대학교 <span style="color: #f09837;">8기</span> 리크루팅</h2>
