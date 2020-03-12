@@ -1,44 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 <style>
-    .info{
-        margin: 10% 0 0 0;
-        color:#707070;
-    }
-
-    .info-column{
-        margin: 10px 0 0 0;
-    }
-
     .paragraph{
         padding: 0 5%;
         line-height:1.9em;
     }
 
-    .btn-outline-warning{
-    color: #f09837;
-    border-color: #f09837;
-    }
-
-    .btn-outline-warning:hover {
-    color: #fff;
-    background-color: #f09837;
-    border-color: #f09837;
-    }
-
     .sign{
-            margin: 0 5% 30px 0;
+        margin: 0 5% 30px 0;
     }
 
     .a-yellow{
     color:#f09837;
     }
 
-  .a-yellow:hover {
+    .a-yellow:hover {
     color: #8a551d;
     text-decoration:none
-  }
-  @media (max-width: 600px){
+    }
+
+    @media (max-width: 600px){
         h1{
             font-size: 20px !important;
         }
@@ -48,12 +29,12 @@
     }
 </style>
 
-    <div class="pl-md-5 py-3 ml-md-5 mt-5 ml-4" style="font-weight: bold;">
-        <h3 style="font-weight: bold;"><span style="color: #f09837;">멋쟁이사자처럼</span><span style="color:#ff8f66;"> 서강대학교</span></h3>
-        <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
-        <h4 style="font-weight: bold; color:#707070;">활동안내</h4>
-        <div class="border-bottom mr-5" style="max-width: 600px; height: 10px;"></div>
-    </div>
+<div class="pl-md-5 py-3 ml-md-5 mt-5 ml-4" style="font-weight: bold;">
+    <h3 style="font-weight: bold;"><span style="color: #f09837;">멋쟁이사자처럼</span><span style="color:#ff8f66;"> 서강대학교</span></h3>
+    <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
+    <h4 style="font-weight: bold; color:#707070;">활동안내</h4>
+    <div class="border-bottom mr-5" style="max-width: 600px; height: 10px;"></div>
+</div>
 
     <div class="container my-5">
         <h3 style="color:black; font-size: 30px; font-weight: 800">주요 활동 및 일정</h3><br>
@@ -68,6 +49,7 @@
         </p>
         <br>
     </div>
+
     <div class="container my-5">
         <h3 style="color:black; font-size: 30px; font-weight: 800">활동규칙</h3><br>
         <p class="paragraph" style="font-size:17px;">
@@ -77,7 +59,7 @@
             4. 출결 결산 방식은 서강대학교 학칙의 관련 규정과 동일하게 적용합니다.(15분 이상 지각, 3회 지각 시 1회 결석과 동일하게 간주)<br>
             5. 결석 3회 시, 서강대학교 학칙에서 인정하는 유고 결석 사유인 경우 1회에 한해 결석 1회를 무효화할 수 있습니다.<br>
         </p>
-        <br><br><br>
+        <br>
     </div>
 
     <div class="container my-5">
@@ -87,12 +69,13 @@
             - 사전 과제 미수행 시 합격이 취소될 수 있습니다. <br>
             - 사전 과제 중 발생하는 문제는 운영팀에게 문의하거나 첫 세션일 1시간 전 디버깅 미팅에서 도움을 받으실 수 있습니다. <br>
         </p>
-        <br><br><br>
-    </div><br>
+        <br>
+    </div>
+    <br>
+    <br>
 
 <div class="sign text-right">
     <a class="a-yellow" href="{% url 'main' %}">돌아가기</a>  
 </div>
-
 
 {% endblock %}
