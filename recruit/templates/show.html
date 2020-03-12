@@ -18,12 +18,22 @@
             font-size: 17px;
             line-height: 160%;
         }
+        .container{
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+        .btn-lg{
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+        }
     }
 </style>
     <div class="pl-md-5 py-3 ml-md-5 mt-5 ml-4" style="font-weight: bold;">
         <h3 style="font-weight: bold;"><span style="color: #f09837;">멋쟁이사자처럼</span><span style="color:#ff8f66;"> 서강대학교</span></h3>
         <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
-        <h4 style="font-weight: bold; color:#707070;">FAQ</h4>
+        <h4 style="font-weight: bold; color:#707070;">지원서 보기</h4>
         <div class="border-bottom mr-5" style="max-width: 600px; height: 10px;"></div>
     </div>
 
@@ -47,7 +57,7 @@
     <div class="form-group mb-5">
         <div class="mb-4 h5 font-weight-bold">5. 본인이 했던 활동이나 프로젝트 중 소개하고 싶은 것이 있다면 자유롭게 첨부해주시기 바랍니다. (필수X, 최대 200MB 파일 1개)</div>
         {% if object_list.art.q5 %}
-            <div>{{ object_list.art.q5.name }}</div>
+            <div class="ml-2">{{ object_list.art.q5.name }}</div>
         {% endif %}
     </div>
     {% if now|date:"YmdHi" < end|date:"YmdHi" %}
@@ -56,9 +66,9 @@
             <span style="color: red;">*제출 후에는 지원서 수정이 불가능합니다.</span>
         </div>
             <div class="text-center">
-                <a href="{% url 'edit' object_list.art.id %}" class="btn btn-lg btn-light btn-outline-secondary mx-1 mb-2">수정하기</a>
-                <a href="{% url 'submit' %}" class="btn btn-lg btn-light btn-outline-secondary mx-5 mb-2">제출하기</a>
-                <a href="{% url 'delete' %}" class="btn btn-lg btn-light btn-outline-secondary mx-1 mb-2">삭제하기</a>
+                <a href="{% url 'edit' object_list.art.id %}" class="btn btn-lg btn-light btn-outline-secondary mx-1 mx-md-4 mb-2">수정하기</a>
+                <a href="{% url 'submit' %}" class="btn btn-lg btn-light btn-outline-secondary mx-1 mx-md-4 mb-2">제출하기</a>
+                <a href="{% url 'delete' %}" class="btn btn-lg btn-light btn-outline-secondary mx-1 mx-md-4 mb-2">삭제하기</a>
             </div>
         {% endif %}
     {% endif %}<br><br><br><br>

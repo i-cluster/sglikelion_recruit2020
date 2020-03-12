@@ -64,9 +64,16 @@
     .login-box{
         padding: 0 40%;
     }
+    #username, #password{
+        background-color: transparent;
+        border-radius: 0;
+        border-width: 0.1px;
+        color: white;
+    }
+   
 @media (max-width: 600px){
     .form-control{
-        width: 250px !important;
+        width: 220px !important;
     }
     .header{
         max-width: 340px !important;
@@ -74,10 +81,10 @@
         margin-left: auto !important;
     }
     h1{
-        font-size: 65px !important;
+        font-size: 57px !important;
     }
-    h2{
-        font-size: 30px !important;
+    h2, h3{
+        font-size: 25px !important;
     }
     .first_line{
         display: block !important;
@@ -89,14 +96,17 @@
         padding: 5px 0 !important;
         text-align: center !important;
     }
+    #likelion_video{
+       margin-top: 61px;
+    }
 }
     #likelion_video{
         position: absolute;
         top: 0px;
         left: 0px;
         min-width: 100%;
-        min-height: 100%;
-        width: auto;
+        min-height: auto;
+        width: 100%;
         height: auto;
         z-index: -1000;
         overflow: hidden;
@@ -142,7 +152,7 @@
                     <br>
 
                 {% else %}<!-- 로그인이 안 되어있는 상태 -->
-                    <form class='' method="post">
+                    <form method="post">
                         {% csrf_token %}
                         {% if error %}
                             <p class="text-danger">{{ error }}</p>
@@ -150,8 +160,8 @@
                         <label for="username" class="sr-only">Username</label>
                         <input name="username" style="max-width: 300px;" type="text" id="username" class="form-control mx-auto" placeholder="아이디" required="" autofocus="">
                         <br>
-                        <label for="Password" class="sr-only">Password</label>
-                        <input name="password" style="max-width: 300px;" type="password" id="Password" class="form-control mx-auto" placeholder="비밀번호" required="">
+                        <label for="password" class="sr-only">Password</label>
+                        <input name="password" style="max-width: 300px;" type="password" id="password" class="form-control mx-auto" placeholder="비밀번호" required="">
                         <input class="btn btn-outline-warning" type="submit" value="로그인">
                         <br>
                         <a class="a-yellow" href="{% url 'signup' %}">회원가입</a>
