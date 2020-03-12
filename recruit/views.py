@@ -44,7 +44,7 @@ class ShowView(ListView):
 
     def get_context_data(self, **kwargs):
         new_context = super().get_context_data(**kwargs)
-        new_context['start'] = datetime.strptime("2020-03-16 06:00:00", '%Y-%m-%d %H:%M:%S')
+        new_context['start'] = datetime.strptime("2020-03-16 10:00:00", '%Y-%m-%d %H:%M:%S')
         new_context['end'] = datetime.strptime("2020-03-22 22:00:00", '%Y-%m-%d %H:%M:%S')
         new_context['now'] = timezone.localtime()
         return new_context
@@ -71,7 +71,7 @@ class CustomLoginView(LoginView):
 
     def get_context_data(self, **kwargs):
         new_context = super().get_context_data(**kwargs)
-        new_context['start'] = datetime.strptime("2020-03-16 06:00:00", '%Y-%m-%d %H:%M:%S')
+        new_context['start'] = datetime.strptime("2020-03-16 10:00:00", '%Y-%m-%d %H:%M:%S')
         new_context['end'] = datetime.strptime("2020-03-22 22:00:00", '%Y-%m-%d %H:%M:%S')
         new_context['now'] = timezone.localtime()
         try:

@@ -164,14 +164,20 @@
 
 
 <script type="text/javascript">
-    var countDownDate = new Date("Mar 16, 2020 06:00:00").getTime();
+    var startDate = new Date("Mar 16, 2020 10:00:00").getTime();
+    var endDate = new Date("Mar 22, 2020 22:00:00").getTime();
 
     var x = setInterval(function() {
         // 오늘 날짜 등록
         var now = new Date().getTime();
 
         // 종료일자에서 현재일자를 뺀 시간
-        var distance = countDownDate - now;
+        if(now<startDate){
+            var distance = startDate - now;
+        }else{
+            var distance = endDate - now;
+        }
+        
 
         // 각 변수에 일, 시, 분, 초를 등록
         var d = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -192,7 +198,10 @@
         }
 
         //id가 d-day인 HTML코드에 내용 삽입
-        document.getElementById("d-day").innerHTML = d +"일 " + h + " : " + m + " : " + s ; });
+        if(now<endDate){
+            document.getElementById("d-day").innerHTML = d +"일 " + h + " : " + m + " : " + s;
+        }
+    });
 
         var video = $(this).find("video");
 
