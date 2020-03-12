@@ -1,21 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
-<style>
-@media (max-width: 600px){
-    .row, .phone_row{
-        margin-right: 10px;
-        margin-left: 10px;
-    }
-}
-</style>
+    <style>
+        @media (max-width: 600px){
+            .row, .phone_row{
+                margin-right: 10px;
+                margin-left: 10px;
+            }
+        }
+        .paragraph{
+            padding: 0 5%;
+            line-height:1.9em;
+        }
+    </style>
+    
     <div class="pl-md-5 py-3 ml-md-5 mt-5 ml-4" style="font-weight: bold;">
-        <h3 style="font-weight: bold;"><span style="color: #f09837;">멋쟁이사자처럼</span><span style="color:#707070;"> 서강대학교</span></h3>
+        <h3 style="font-weight: bold;"><span style="color: #f09837;">멋쟁이사자처럼</span><span style="color:#ff8f66;"> 서강대학교</span></h3>
         <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
         <h4 style="font-weight: bold; color:#707070;">회원가입</h4>
         <div class="border-bottom mr-5" style="max-width: 600px; height: 10px;"></div>
     </div>
 
+    <div class="container my-3">
+        <h4 style="color:black; font-size: 20px; font-weight: 800">회원가입 시 유의사항</h4>
+        <div class="paragraph" style="font-size:17px; padding-left: 0px;">
+            1. 회원가입 자격은 서강대학교 소속 학부생으로 제한됩니다.<br>
+            2. 회원정보는 기간 내에 자유롭게 수정할 수 있으며, 탈퇴 시 모든 관련 정보가 삭제됩니다.<br>
+            3. 이메일(ID)과 희망 면접일은 가입 후 수정이 불가능합니다.
+        </div>
+        <br>
+    </div>
+
     <div class="container my-5">
+        <div>
+            {% for field in form.visible_fields %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <h6 style="color: red; font-weight: bold;">{{ error }}</h6>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
         <form class="mt-3" method="POST" action="">
             {% csrf_token %}
             <div class="form-group row">
@@ -23,9 +47,8 @@
                 <div class="col-sm-3">
                     <input type="email" class="form-control" id="staticEmail" name="email" >
                 </div>
-                <div class="col-sm-7" style="color: red;">
-                   * 이메일은 제출 후 수정할 수 없습니다
-                   <span style="color: red; margin-left: 0;">{{f.email.errors}}</span>
+                <div class="col-sm-7" style="color: red; margin-top: 8px;">
+                    * 이메일은 제출 후 수정할 수 없습니다.
                 </div>
             </div>
             <div class="form-group row">
@@ -39,14 +62,12 @@
                 <div class="col-sm-3">
                     <input type="password" class="form-control" id="inputPassword" name="password1">
                 </div>
-                <span style="color: red;">{{f.password1.errors}}</span>
             </div>
             <div class="form-group row">
                 <label for="inputPassword2" class="col-sm-2 col-form-label">비밀번호 확인</label>
                 <div class="col-sm-3">
                     <input type="password" class="form-control" id="inputPassword2" name="password2">
                 </div>
-                <span style="color: red;">{{f.password2.errors}}</span>
             </div>
             <div class="form-group row">
                 <label for="lastname" class="col-sm-2 col-form-label">이름</label>
@@ -75,30 +96,66 @@
             <div class="form-group row">
                 <label for="inputPassword2" class="col-sm-2 col-form-label">희망 면접일</label>
                 <div class="col-sm-3 btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-light btn-outline-dark mr-3">
+                    <label class="btn btn-light btn-outline-secondary mr-4">
                         <input name="interview_date" type="radio" value="WED">25(수)
                     </label>
-                    <label class="btn btn-light btn-outline-dark mr-3">
+                    <label class="btn btn-light btn-outline-secondary mr-4">
                         <input name="interview_date" value="THUR" type="radio">26(목)
                     </label>
-                    <label class="btn btn-light btn-outline-dark">
-                        <input name="interview_date" value="FRI" type="radio">28(금)
+                    <label class="btn btn-light btn-outline-secondary">
+                        <input name="interview_date" value="FRI" type="radio">27(금)
                     </label>
                 </div>
-                <div class="col-sm-4" style="color: red;">
+                <div class="col-sm-4" style="color: red; margin-top: 8px;">
                     * 희망 면접일은 제출 후 수정할 수 없습니다
                 </div>
-            </div>
-            <div class="phone_row">
-                <h6>개인정보 수집 및 동의약관</h6>
-                <div style="border: 1px solid black; height: 200px; overflow: scroll;">
-                    loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                    loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                    loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            </div><br><br>
+            <div class="phone_row" style="width: 900px;">
+                <h5 style="line-height:1.9em;">개인정보 수집 및 이용약관</h5>
+                <div style="border: 1px solid #ced4da; border-radius: 5px; height: 400px; overflow: scroll; font-size: 13px; padding-top: 10px; padding-left: 10px; line-height:1.9em;">
+                    멋쟁이사자처럼 서강대학교는 「정보통신 이용촉진 및 정보보호등에 관한 법률」, 「개인정보보호법 제15조」 등 법령상의 개인정보보호 규정을 준수하며,
+                    <br>
+                    관련 법령에 의거에 의거하여, 아래와 같은 내용으로 개인정보를 수집하고 있습니다.
+                    <br>
+                    지원자는 아래 내용을 자세히 읽어 보시고, 모든 내용을 이해하신 후에 동의 여부를 결정해 주시기 바랍니다.
+                    <br>
+                    이용자가 제공한 모든 정보는 다음의 목적을 위해 활용되며, 하기 목적 이외의 용도로는 사용되지 않습니다.
+                    <br><br>
+                    1. 개인정보의 수집방법 및 이용목적
+                    <br><br>
+                    ○ 수집방법 : "주소" 신규가입 및 기존사용자를 통한 수집
+                    <br>
+                    ○ 이용목적 : "주소"의 회원가입 및 개인정보 관리, 지원서 작성과 수정 등 서비스 이용에 필요한 최소한의 정보를 수집합니다.
+                    <br>
+                    ○ 시스템목록 : 멋쟁이사자처럼 8기 서강대학교 신입회원 선발
+                    <br><br>
+                    2. 개인정보의 수집항목
+                    <br><br>
+                    멋쟁이사자처럼 서강대학교에서는 기본적인 회원 서비스 제공을 위한 필수정보와,
+                    <br>
+                    정보주체 각각의 기호와 필요에 맞는 서비스를 제공하기 위한 선택정보로 구분하여 다음의 정보를 수집하고 있습니다.
+                    <br>
+                    ○ 수집항목 : 성명, 아이디, 비밀번호, 연락처, 이메일주소, 전공, 누적학기, 희망면접일
+                    <br>
+                    ○ "주소"을 이용할 경우 접속IP, 방문일시 등의 정보는 시스템을 통하여 자동적으로 수집·저장 됩니다.
+                    <br><br>
+                    3. 개인정보의 보유 및 이용기간
+                    <br><br>
+                    멋쟁이사자처럼 서강대학교에서는 정보주체의 회원 가입일로부터 서비스를 제공하는 기간 동안에 한하여
+                    <br>
+                    멋쟁이사자처럼 서강대학교 리크루팅 서비스를 이용하기 위한 최소한의 개인정보를 보유 및 이용하게 됩니다.
+                    <br>
+                    ○ 회원가입 등을 통해 개인정보의 수집·이용, 제공 등에 대해 동의하신 내용은 언제든지 철회 할 수 있습니다.
+                    <br>
+                    ○ 회원 탈퇴를 요청하거나 개인정보의 수집 및 이용에 대한 동의를 철회하는 경우, 보유/이용기간이 종료한 경우 등의 사유발생시 당해 개인정보를 지체없이 파기합니다.
+                    <br><br>
+                    4. 동의 거부 권리 안내
+                    <br><br>
+                    ○ 정보주체는 개인정보 수집·이용 동의를 거부 할 수 있으며, 이 경우 "주소"에서 제공하는 서비스를 이용하는데 제한이 있을 수 있습니다.
                 </div>
                 <div class="mt-3 pl-4">
                     <input type="checkbox" id="jb-checkbox" class="custom-control-input">
-                    <label class="custom-control-label" for="jb-checkbox">위 사항을 확인하였습니다</label>
+                    <label class="custom-control-label" for="jb-checkbox">개인정보 수집 및 이용에 동의합니다.</label>
                 </div>
             </div>
             <div class="text-center my-5">

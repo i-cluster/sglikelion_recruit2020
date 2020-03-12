@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
     <style>
         .main-container{
             margin: 5% 0 0 0;
@@ -52,6 +56,7 @@
 
         #bold, #d-day{
             font-weight: 800;
+            color: white;
         }
 
         .login-box{
@@ -83,7 +88,7 @@
             text-align: center !important;
        }
     }
-        #videobcg{
+        #likelion_video{
             position: absolute;
             top: 0px;
             left: 0px;
@@ -96,19 +101,17 @@
             filter: brightness(20%)
         }
     </style>
-
-    {% comment %} {% load static %}
-    <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
-        <source src='{% static "video.mp4" %}' type="video/mp4"/>
-        비디오 지원 안함
-    </video> {% endcomment %}
+    <video id="likelion_video" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+        <source src="{% static 'img/promotion2.mp4' %}" type="video/mp4">
+    </video>
 
     <div class="main-container">
+
         <div class="header">
-            <h1 class="text-center" style="font-size: 90px;" id="bold">HACK YOUR LIFE</h1>
+            <h1 class="text-center" style="font-family: 'Raleway', sans-serif; font-size: 90px; letter-spacing:3px" id="bold">HACK <span style="color:#fc7553;">YOUR</span> LIFE</h1>
             <h2 class="text-center" sytle="font-size: 60px;" id="bold"><span class="first_line" style="color: #f09837;">멋쟁이 사자처럼</span> 서강대학교 <span style="color: #f09837;">8기</span> 리크루팅</h2>
             <div class="dday text-center">
-                <h5>지원시작까지 남은시간</h5>
+                <h5 style="color:white;">지원시작까지 남은시간</h5>
                 <h3 class="text-center" id="d-day"></h3>
             </div>
         </div>
@@ -120,15 +123,15 @@
                 {% if user.is_authenticated %}<!-- 로그인이 되어있는 상태 -->
                     {% if art %}
                         {% if art.final is True %}
-                            <a class="btn btn-outline-warning btn-big btn-phone" href="{% url 'show' %}">지원서 보러가기</a>
+                            <a class="btn btn-outline-warning btn-big btn-phone" style="color:white;" href="{% url 'show' %}">지원서 보러가기</a>
                         {% else %}
-                            <a class="btn btn-outline-warning btn-big btn-phone" href="{% url 'edit' art.id %}">지원서 수정하기</a>
+                            <a class="btn btn-outline-warning btn-big btn-phone" style="color:white;" href="{% url 'edit' art.id %}">지원서 수정하기</a>
                         {% endif %}
                     {% else %}
-                        <a class="btn btn-outline-warning btn-big btn-phone" href="{% url 'new' %}">지원서 작성하기</a>
+                        <a class="btn btn-outline-warning btn-big btn-phone" style="color:white;" href="{% url 'notice' %}">지원서 작성하기</a>
                     {% endif %}
                     <br><br>
-                    <h4 style="color: #707070;">{{ request.user.last_name }}님 환영합니다.</h4>
+                    <h4 style="color:white;">{{ request.user.last_name }}님 환영합니다.</h4>
                     <!--<a class="a-yellow" style="font-size: 20px;" href="{% url 'profile_update' request.user.profile.id %}">회원정보 수정하기 |</a>-->
                         <a class="a-yellow" style="font-size: 20px;" href="{% url 'signout' %}">로그아웃</a>
                     <br>
@@ -185,6 +188,16 @@
 
             //id가 d-day인 HTML코드에 내용 삽입
             document.getElementById("d-day").innerHTML = d +"일 " + h + " : " + m + " : " + s ; });
+
+            var video = $(this).find("video");
+
+            if($("video").length){
+                $(document).ready(function(){
+                    $(".navbar-light").removeClass('bg-light');
+                    $(".navbar-light").css('background-color','rgba(1,1,1,0)');
+                    $(".navbar-brand, .nav-link").css('color', 'white');
+                });
+            }
     </script>
 
 {% endblock %}

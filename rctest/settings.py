@@ -25,7 +25,7 @@ SECRET_KEY = '!oon2ykacy%#_ay1m)pg#0%ium)j4)-vf60*&i%#w2_7sesbd+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -120,9 +120,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/recruit/static/',
+    os.path.join(BASE_DIR, '/recruit/static/'),
 ]
 
 LOGIN_REDIRECT_URL = '/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

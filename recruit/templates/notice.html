@@ -1,36 +1,96 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<style>
+    .info{
+        margin: 10% 0 0 0;
+        color:#707070;
+    }
+
+    .info-column{
+        margin: 10px 0 0 0;
+    }
+
+    .paragraph{
+        padding: 0 5%;
+        line-height:1.9em;
+    }
+
+    .btn-outline-warning{
+    color: #f09837;
+    border-color: #f09837;
+    }
+
+    .btn-outline-warning:hover {
+    color: #fff;
+    background-color: #f09837;
+    border-color: #f09837;
+    }
+
+    .sign{
+            margin: 0 5% 30px 0;
+    }
+
+    .a-yellow{
+    color:#f09837;
+    }
+
+    .a-yellow:hover {
+        color: #8a551d;
+        text-decoration:none
+    }
+    @media (max-width: 600px){
+            h1{
+                font-size: 20px !important;
+            }
+            .paragraph{
+                padding: 0 7px;
+            }
+        }
+</style>
+
     <div class="pl-md-5 py-3 ml-md-5 mt-5 ml-4" style="font-weight: bold;">
-        <h3 style="font-weight: bold;"><span style="color:#f09837;">멋쟁이사자처럼</span><span style="color:#707070;"> 서강대학교</span></h3>
+        <h3 style="font-weight: bold;"><span style="color: #f09837;">멋쟁이사자처럼</span><span style="color:#ff8f66;"> 서강대학교</span></h3>
         <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
-        <h4 style="font-weight: bold; color:#707070;">지원 안내사항</h4>
+        <h4 style="font-weight: bold; color:#707070;">FAQ</h4>
         <div class="border-bottom mr-5" style="max-width: 600px; height: 10px;"></div>
     </div>
 
     <div class="container my-5">
-        <h5>지원시 유의사항</h5>
-        <div style="border: 1px solid black; height: 200px; overflow: scroll;">
-            loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-        </div>
+        <h3 style="color:black; font-size: 30px; font-weight: 800">지원 시 유의사항</h3><br>
+        <p class="paragraph" style="font-size:17px;">
+            1. 작성 중인 지원서는 개인 프로필에 임시저장되며, 지원서를 최종 제출해야 접수가 완료됩니다.<br>
+            2. 지원서는 임시저장 기간 내에 자유롭게 수정할 수 있으나 최종 제출 이후에는 수정이 불가능합니다.<br>
+            3. 필수 활동의 참여가 어려운 지원자는 선발 우선 순위에서 불이익을 받을 수 있습니다.<br>
+            4. 제출 기한을 넘긴 지원서는 자동으로 불합격 처리되며 별도의 추가지원 기간은 부여되지 않습니다.<br>
+            5. 지원 및 자격사항이 사실과 다른 경우 합격이 취소되며 이후 본 단체가 주관하는 활동의 참여가 제한될 수 있습니다.
+        </p>
+        <br>
     </div>
     <div class="container my-5">
-        <h5>선발 절차</h5>
-        <div style="border: 1px solid black; height: 200px; overflow: scroll;">
-            loremipsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-        </div>
+        <h3 style="color:black; font-size: 30px; font-weight: 800">선발일정과 절차</h3><br>
+        <p class="paragraph" style="font-size:17px;">
+            - 서류접수 기간 : 3/16(월) ~ 3/22(일) 22:59:59<br>
+            - 서류합격 발표 : 3/23(월) 16:00<br>
+            - 개별면접 일정 : 3/25(수) ~ 3/27(금) 17시-20시<br>
+            - 최종합격 발표 : 3/29(일) 18:00<br>
+            <p class="paragraph" style="font-size:14px;">
+                * 서류합격 및 최종합격 발표는 회원정보에 기재된 연락처로 안내 문자가 발송됩니다.<br>
+                * 면접 시간은 회원정보에 기재한 희망 면접일의 17:00 ~ 20:00 내에서 임의로 배정됩니다.<br>
+                * 배정된 면접시간 조율은 멋쟁이사자처럼 서강대학교 운영팀 공식 이메일(sogang@likelion.org)을 통해서 가능합니다.
+            </p>
+        </p>
+        <br><br><br>
         <div class="mt-3 pl-4">
                     <input type="checkbox" id="jb-checkbox" class="custom-control-input">
-        <label class="custom-control-label" for="jb-checkbox">위 사항을 확인하였습니다</label>
+        <label class="custom-control-label" for="jb-checkbox">위 사항을 확인하였습니다.</label>
         </div>
 
-    </div>
-
-
+    </div><br><br><br>
 
     <div class="text-center">
         <button class="btn btn-light btn-outline-dark">
-            <a href="#" style="color: #707070;">지원서 작성하기</a>
+            <a href="{% url 'new' %}" style="color: #707070;">지원서 작성하기</a>
         </button>
     </div>
 
