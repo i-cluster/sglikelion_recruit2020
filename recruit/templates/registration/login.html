@@ -121,21 +121,22 @@
         </div>
 
         <div class="signin_bg text-center">
-            {% if now|date:"YmdHi" < start|date:"YmdHi" %}
-                지원 준비중입니다.
+            {% if now|date:"YmdHi" > start|date:"YmdHi" %}
+                <h3 style="color:white;">아직 지원 기간이 아닙니다.</h3>
             {% else %}
                 {% if user.is_authenticated %}<!-- 로그인이 되어있는 상태 -->
+                    <h3 style="color:white;">{{ request.user.last_name }}님 환영합니다.</h3>
                     {% if art %}
-                        {% if art.final is True %}
-                            <a class="btn btn-outline-warning btn-big btn-phone" style="color:white;" href="{% url 'show' %}">지원서 보러가기</a>
-                        {% else %}
-                            <a class="btn btn-outline-warning btn-big btn-phone" style="color:white;" href="{% url 'edit' art.id %}">지원서 수정하기</a>
-                        {% endif %}
+                        <a class="btn btn-outline-warning btn-phone" style="color:white;" href="{% url 'show' %}">지원서 보기</a>
                     {% else %}
-                        <a class="btn btn-outline-warning btn-big btn-phone" style="color:white;" href="{% url 'notice' %}">지원서 작성하기</a>
+                        {% if now|date:"YmdHi" < end|date:"YmdHi" %}
+                            <a class="btn btn-outline-warning btn-phone" style="color:white;" href="{% url 'notice' %}">지원서 작성하기</a>
+                        {% else %}
+                            <br>
+                            <h5 style="color:white;">지원이 마감되었습니다.</h5>                        
+                        {% endif %}
                     {% endif %}
                     <br><br>
-                    <h4 style="color:white;">{{ request.user.last_name }}님 환영합니다.</h4>
                     <!--<a class="a-yellow" style="font-size: 20px;" href="{% url 'profile_update' request.user.profile.id %}">회원정보 수정하기 |</a>-->
                         <a class="a-yellow" style="font-size: 20px;" href="{% url 'signout' %}">로그아웃</a>
                     <br>
