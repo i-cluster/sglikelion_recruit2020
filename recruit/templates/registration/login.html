@@ -5,6 +5,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
     <style>
+        body{
+            background-color: black; 
+        }
+     
         .main-container{
             margin: 5% 0 0 0;
         }
@@ -108,7 +112,7 @@
     <div class="main-container">
 
         <div class="header">
-            <h1 class="text-center" style="font-family: 'Raleway', sans-serif; font-size: 90px; letter-spacing:3px" id="bold">HACK <span style="color:#fc7553;">YOUR</span> LIFE</h1>
+            <h1 class="text-center" style="font-family: 'Raleway', sans-serif; font-size: 90px; letter-spacing:3px" id="bold">HACK YOUR LIFE</h1>
             <h2 class="text-center" sytle="font-size: 60px;" id="bold"><span class="first_line" style="color: #f09837;">멋쟁이 사자처럼</span> 서강대학교 <span style="color: #f09837;">8기</span> 리크루팅</h2>
             <div class="dday text-center">
                 <h5 style="color:white;">지원시작까지 남은시간</h5>
@@ -158,47 +162,47 @@
         </div>
     </div>
 
-    <SCRIPT type="text/javascript">
-        var countDownDate = new Date("Mar 16, 2020 06:00:00").getTime();
+<script type="text/javascript">
+    var countDownDate = new Date("Mar 16, 2020 06:00:00").getTime();
 
-        var x = setInterval(function() {
-            // 오늘 날짜 등록
-            var now = new Date().getTime();
+    var x = setInterval(function() {
+        // 오늘 날짜 등록
+        var now = new Date().getTime();
 
-            // 종료일자에서 현재일자를 뺀 시간
-            var distance = countDownDate - now;
+        // 종료일자에서 현재일자를 뺀 시간
+        var distance = countDownDate - now;
 
-            // 각 변수에 일, 시, 분, 초를 등록
-            var d = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var s = Math.floor((distance % (1000 * 60)) / 1000);
+        // 각 변수에 일, 시, 분, 초를 등록
+        var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var s = Math.floor((distance % (1000 * 60)) / 1000);
 
-            if(h<10){
-                h = "0"+h;
-            }
+        if(h<10){
+            h = "0"+h;
+        }
 
-            if(m<10){
-                m = "0"+m;
-            }
+        if(m<10){
+            m = "0"+m;
+        }
 
-            if(s<10){
-                s = "0"+s;
-            }
+        if(s<10){
+            s = "0"+s;
+        }
 
-            //id가 d-day인 HTML코드에 내용 삽입
-            document.getElementById("d-day").innerHTML = d +"일 " + h + " : " + m + " : " + s ; });
+        //id가 d-day인 HTML코드에 내용 삽입
+        document.getElementById("d-day").innerHTML = d +"일 " + h + " : " + m + " : " + s ; });
 
-            var video = $(this).find("video");
+        var video = $(this).find("video");
 
-            if($("video").length){
-                $(document).ready(function(){
-                    $(".navbar-light").removeClass('bg-light');
-                    $(".navbar-light").css('background-color','rgba(1,1,1,0)');
-                    $(".navbar-brand, .nav-link").css('color', 'white');
-                });
-            }
-    </script>
+        if($("video").length){
+            $(document).ready(function(){
+                $(".navbar-light").removeClass('bg-light');
+                $(".navbar-light").css('background-color','rgba(1,1,1,0)');
+                $(".navbar-brand, .nav-link").css('color', 'white');
+            });
+        }
+</script>
 
 {% endblock %}
 
