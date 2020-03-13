@@ -1,6 +1,5 @@
 appdirs==1.4.3
 asgiref==3.2.3
-awsebcli==3.17.1
 botocore==1.14.17
 cement==2.8.2
 certifi==2019.11.28
