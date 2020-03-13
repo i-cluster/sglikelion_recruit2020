@@ -24,7 +24,6 @@ Pillow==5.4.1
 pypiwin32==223
 python-dateutil==2.8.0
 pytz==2019.3
-pywin32==227
 PyYAML==5.2
 requests==2.20.1
 s3transfer==0.3.3
