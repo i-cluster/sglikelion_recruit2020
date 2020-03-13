@@ -41,12 +41,18 @@
     }
     
     @media (max-width: 600px){
-            h1{
-                font-size: 20px !important;
-            }
-            .paragraph{
-                padding: 0 7px;
-            }
+        .paragraph{
+            padding: 0 7px;
+            font-size: 16px !important;
+        }
+        .container{
+            padding-left: 22px;
+            padding-right: 22px;
+        }
+        .container h3{
+            margin-left: 7px;
+            font-size: 25px !important;
+        }
         }
 </style>
 
@@ -93,9 +99,9 @@
     <br>
 
     <div class="text-center">
-        <button class="btn btn-light btn-outline-dark">
-            <a href="{% url 'new' %}" style="color: #707070;">지원서 작성하기</a>
-        </button>
+        <a class="btn btn-light btn-outline-warning" href="{% url 'new' %}">
+            지원서 작성하기
+        </a>
     </div>
 
 {% endblock %}

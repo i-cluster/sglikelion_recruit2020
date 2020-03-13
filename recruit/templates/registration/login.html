@@ -64,20 +64,39 @@
     .login-box{
         padding: 0 40%;
     }
+    #username, #password{
+        background-color: transparent;
+        border-radius: 0;
+        border-width: 0.1px;
+        color: white;
+    }
+@media (max-width: 991px){
+    #side-menu{
+     background-color: rgba(0, 0, 0, 0.9);
+    }
+    #side-menu .nav-link{
+    color: white !important;
+    }
+    #side-menu .close{
+        color: white !important;
+    }
+} 
 @media (max-width: 600px){
     .form-control{
-        width: 250px !important;
+        width: 220px !important;
     }
     .header{
         max-width: 340px !important;
         margin-right: auto !important;
         margin-left: auto !important;
+        padding-bottom: 35px;
     }
     h1{
-        font-size: 65px !important;
+        font-size: 57px !important;
+        margin-bottom: 50px;
     }
-    h2{
-        font-size: 30px !important;
+    h2, h3{
+        font-size: 23px !important;
     }
     .first_line{
         display: block !important;
@@ -89,14 +108,17 @@
         padding: 5px 0 !important;
         text-align: center !important;
     }
+    #likelion_video{
+       margin-top: 140px;
+    }
 }
     #likelion_video{
         position: absolute;
         top: 0px;
         left: 0px;
         min-width: 100%;
-        min-height: 100%;
-        width: auto;
+        min-height: auto;
+        width: 100%;
         height: auto;
         z-index: -1000;
         overflow: hidden;
@@ -124,7 +146,7 @@
                 <h3 style="color:white;">아직 지원 기간이 아닙니다.</h3>
             {% else %}
                 {% if user.is_authenticated %}<!-- 로그인이 되어있는 상태 -->
-                    <h3 style="color:white;">{{ request.user.last_name }}님 환영합니다.</h3>
+                    <h4 style="color:white;">{{ request.user.last_name }}님 환영합니다.</h4>
                     {% if art %}
                         <a class="btn btn-outline-warning btn-phone" style="color:white;" href="{% url 'show' %}">지원서 보기</a>
                     {% else %}
@@ -142,7 +164,7 @@
                     <br>
 
                 {% else %}<!-- 로그인이 안 되어있는 상태 -->
-                    <form class='' method="post">
+                    <form method="post">
                         {% csrf_token %}
                         {% if error %}
                             <p class="text-danger">{{ error }}</p>
@@ -150,8 +172,8 @@
                         <label for="username" class="sr-only">Username</label>
                         <input name="username" style="max-width: 300px;" type="text" id="username" class="form-control mx-auto" placeholder="아이디" required="" autofocus="">
                         <br>
-                        <label for="Password" class="sr-only">Password</label>
-                        <input name="password" style="max-width: 300px;" type="password" id="Password" class="form-control mx-auto" placeholder="비밀번호" required="">
+                        <label for="password" class="sr-only">Password</label>
+                        <input name="password" style="max-width: 300px;" type="password" id="password" class="form-control mx-auto" placeholder="비밀번호" required="">
                         <input class="btn btn-outline-warning" type="submit" value="로그인">
                         <br>
                         <a class="a-yellow" href="{% url 'signup' %}">회원가입</a>
@@ -208,10 +230,12 @@
         if($("video").length){
             $(document).ready(function(){
                 $(".navbar-light").removeClass('bg-light');
-                $(".navbar-toggler").removeClass('bg-dark');
+                $(".navbar-toggler").removeClass('bg-light');
+                $(".navbar-toggler").addClass('bg-dark');
                 $(".navbar-light").css('background-color','rgba(1,1,1,0)');
-                $(".navbar-brand, .nav-link, .footer, .navbar-toggler").css('color', 'white');
-            });
+                $(".navbar-brand, .nav-link, .footer").css('color', 'white');
+                $(".alert").css({'color': 'white', 'background-color':' rgba(0, 0, 0, 0.4)'});
+            });   
         }
 </script>
 
