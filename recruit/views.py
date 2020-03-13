@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.utils import timezone
 from .models import Application, Profile, User
 from django.contrib import messages
@@ -91,7 +91,7 @@ def submit(request):
 def delete(request):
     art = get_object_or_404(Application, created_by=request.user)
     art.delete()
-    return render(request, 'registration/login.html')
+    return redirect('main')
 
 
 class SignupView(CreateView):
