@@ -123,12 +123,18 @@ class UserUpdate(UpdateView):
     template_name = 'u_edit.html'
     form_class = ProfileForm
 
+    def get(self, request, *args, **kwargs):
+        if request.user.profile.id != kwargs['pk']:
+            messages.error(request, '수정 권리가 없습니다')
+            return HttpResponseRedirect(reverse('main'))
+        return super().get(request, *args, **kwargs)
+
     def post(self, request, *args, **kwargs):
         profile_form = ProfileForm(request.POST or None)
         if profile_form.is_valid():
             profile = Profile.objects.get(user=request.user)
-            profile.semester, profile.phone = request.POST['semester'], request.POST['phone']
-            profile.major, profile.interview_date = request.POST['major'], request.POST['interview_date']
+            profile.semester, profile.phone, profile.major = request.POST['semester'], request.POST['phone'], request.POST['major']
+            profile.save()
             messages.success(request, '회원 정보 수정 완료')
             return HttpResponseRedirect(reverse('main'))
         else:
