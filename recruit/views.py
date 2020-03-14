@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.utils import timezone
 from .models import Application, Profile, User
 from django.contrib import messages
@@ -44,7 +44,7 @@ class ShowView(ListView):
 
     def get_context_data(self, **kwargs):
         new_context = super().get_context_data(**kwargs)
-        new_context['start'] = datetime.strptime("2020-03-16 06:00:00", '%Y-%m-%d %H:%M:%S')
+        new_context['start'] = datetime.strptime("2020-03-16 10:00:00", '%Y-%m-%d %H:%M:%S')
         new_context['end'] = datetime.strptime("2020-03-22 22:00:00", '%Y-%m-%d %H:%M:%S')
         new_context['now'] = timezone.localtime()
         return new_context
@@ -71,7 +71,7 @@ class CustomLoginView(LoginView):
 
     def get_context_data(self, **kwargs):
         new_context = super().get_context_data(**kwargs)
-        new_context['start'] = datetime.strptime("2020-03-16 06:00:00", '%Y-%m-%d %H:%M:%S')
+        new_context['start'] = datetime.strptime("2020-03-16 10:00:00", '%Y-%m-%d %H:%M:%S')
         new_context['end'] = datetime.strptime("2020-03-22 22:00:00", '%Y-%m-%d %H:%M:%S')
         new_context['now'] = timezone.localtime()
         try:
@@ -91,7 +91,7 @@ def submit(request):
 def delete(request):
     art = get_object_or_404(Application, created_by=request.user)
     art.delete()
-    return render(request, 'registration/login.html')
+    return redirect('main')
 
 
 class SignupView(CreateView):
@@ -123,12 +123,18 @@ class UserUpdate(UpdateView):
     template_name = 'u_edit.html'
     form_class = ProfileForm
 
+    def get(self, request, *args, **kwargs):
+        if request.user.profile.id != kwargs['pk']:
+            messages.error(request, '수정 권리가 없습니다')
+            return HttpResponseRedirect(reverse('main'))
+        return super().get(request, *args, **kwargs)
+
     def post(self, request, *args, **kwargs):
         profile_form = ProfileForm(request.POST or None)
         if profile_form.is_valid():
             profile = Profile.objects.get(user=request.user)
-            profile.semester, profile.phone = request.POST['semester'], request.POST['phone']
-            profile.major, profile.interview_date = request.POST['major'], request.POST['interview_date']
+            profile.semester, profile.phone, profile.major = request.POST['semester'], request.POST['phone'], request.POST['major']
+            profile.save()
             messages.success(request, '회원 정보 수정 완료')
             return HttpResponseRedirect(reverse('main'))
         else:

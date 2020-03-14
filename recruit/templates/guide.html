@@ -20,11 +20,17 @@
     }
 
     @media (max-width: 600px){
-        h1{
-            font-size: 20px !important;
-        }
         .paragraph{
             padding: 0 7px;
+            font-size: 16px !important;
+        }
+        .container{
+            padding-left: 22px;
+            padding-right: 22px;
+        }
+        .container h3{
+            margin-left: 7px;
+            font-size: 25px !important;
         }
     }
 </style>
@@ -37,7 +43,7 @@
 </div>
 
     <div class="container my-5">
-        <h3 style="color:black; font-size: 30px; font-weight: 800">주요 활동 및 일정</h3><br>
+        <h3 style="color:black; font-size: 25px; font-weight: 800">주요 활동 및 일정</h3><br>
         <p class="paragraph" style="font-size:17px;">
             - 정규 세션 : 매주 월/목 오후 6:30 ~ 오후 9:30<br>
             - 정규 팀 프로젝트 : 연간 운영(학기, 방학 포함)<br>
@@ -51,7 +57,7 @@
     </div>
 
     <div class="container my-5">
-        <h3 style="color:black; font-size: 30px; font-weight: 800">활동규칙</h3><br>
+        <h3 style="color:black; font-size: 25px; font-weight: 800">활동규칙</h3><br>
         <p class="paragraph" style="font-size:17px;">
             1. 멋쟁이사자처럼 서강대학교는 최소 두학기의 활동을 원칙으로 합니다.<br>
             2. 모든 회원은 정규 세션과 정규 팀 프로젝트 활동에 반드시 참여해야 합니다.<br>
@@ -63,7 +69,7 @@
     </div>
 
     <div class="container my-5">
-        <h3 style="color:black; font-size: 30px; font-weight: 800">합격자 과제 안내</h3><br>
+        <h3 style="color:black; font-size: 25px; font-weight: 800">합격자 과제 안내</h3><br>
         <p class="paragraph" style="font-size:17px;">
             - 최종 합격자에 한해 4/2(목) 첫 세션에 대한 사전 과제가 부여됩니다. <br>
             - 사전 과제 미수행 시 합격이 취소될 수 있습니다. <br>
@@ -74,7 +80,7 @@
     <br>
     <br>
 
-<div class="sign text-right">
+<div class="sign text-right mr-5">
     <a class="a-yellow" href="{% url 'main' %}">돌아가기</a>  
 </div>
 
