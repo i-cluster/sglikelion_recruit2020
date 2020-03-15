@@ -127,7 +127,7 @@
 </style>
 
     <video id="likelion_video" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
-        <source src="{% static 'img/promotion2.mp4' %}" type="video/mp4">
+        <source src="{% static 'img/promotion3.mp4' %}" type="video/mp4">
     </video>
 
     <div class="main-container">
@@ -148,7 +148,7 @@
         </div>
 
         <div class="signin_bg text-center">
-            {% if now|date:"YmdHi" < start|date:"YmdHi" %}
+            {% if now|date:"YmdHi" > start|date:"YmdHi" %}
                 <h3 style="color:white;">아직 지원 기간이 아닙니다.</h3><br><br>
                 <span style="color:white; font-size:15px; line-height:1.9em;">
                     서류접수 : 3/16(월) ~ 3/22(일) 22:00:00<br>
@@ -195,6 +195,7 @@
             {% endif %}
         </div>
     </div>
+    <span style="color:white; font-size:10px; float:right; margin-right:30px; margin-top:50px;">영상제공 : 멋쟁이사자처럼 한국항공대학교</span>
 
 
 <script type="text/javascript">
