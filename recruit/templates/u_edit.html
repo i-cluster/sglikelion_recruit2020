@@ -42,6 +42,12 @@
                     <input type="text" class="form-control" id="phone_num" name="phone" value="{{ request.user.profile.phone }}">
                 </div>
             </div>
+            <div class="form-group row">
+                <div class="col-sm-2 col-form-label">희망 면접일</div>
+                <div class="col-sm-3" style="line-height:38px;">
+                    {{ request.user.profile.interview_date }}
+                </div>
+            </div>
             <div class="text-center my-5">
                 <input class="btn btn-light btn-outline-secondary" type="submit" value=수정하기>
             </div>
