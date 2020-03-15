@@ -38,10 +38,12 @@
                 <li class="nav-item mr-2">
                     <a class="nav-link mx-3" href="{% url 'faq' %}" style="font-size: 20px; font-weight: bold; line-height: 37px;">FAQ</a>
                 </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item border-left pl-2 phone_padding">
-                    <a class="nav-link mx-3 h-100" href="{% url 'profile_update' request.user.profile.id %}" style="font-size: 20px; font-weight: bold; line-height: 37px;">회원정보 수정하기</a>
-                </li>
+                {% if now|date:"YmdHi" > start|date:"YmdHi" %}
+                    {% if user.is_authenticated %}
+                        <li class="nav-item border-left pl-2 phone_padding">
+                            <a class="nav-link mx-3 h-100" href="{% url 'profile_update' request.user.profile.id %}" style="font-size: 20px; font-weight: bold; line-height: 37px;">회원정보 수정하기</a>
+                        </li>
+                    {% endif %}
                 {% endif %}
             </ul>
         </div>
