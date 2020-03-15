@@ -1,6 +1,7 @@
 from  __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
+from multiselectfield import MultiSelectField
 
 # Create your models here.
 
@@ -23,16 +24,18 @@ class Profile(models.Model):
     phone = models.CharField(max_length=20, blank=True, verbose_name='연락처')
     major = models.CharField(max_length=255, verbose_name= '전공', null=True, blank=True)
     semester = models.IntegerField(verbose_name='누적학기', default=1)
-    CLASSIFED_CHOICE_SET = (
+    INTERVIEW_CHOICES = (
         ('WED', '25(수)'),
         ('THUR', '26(목)'),
         ('FRI', '27(금)'),
     )
-    interview_date = models.CharField(
+    interview_date = MultiSelectField(
         max_length=20,
-        choices=CLASSIFED_CHOICE_SET,
+        choices=INTERVIEW_CHOICES,
         default='WED',
-        verbose_name='희망 면접 날짜'
+        verbose_name='희망 면접 날짜',
+        null=True,
+        blank=True
     )
 
     def __str__(self):

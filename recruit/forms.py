@@ -46,4 +46,4 @@ class SigninForm(ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ('user', 'interview_date')
+        exclude = ('user',)
