@@ -148,6 +148,7 @@
         </div>
 
         <div class="signin_bg text-center">
+<<<<<<< HEAD
             {% if now|date:"YmdHi" < start|date:"YmdHi" %}
                 <h3 style="color:white;">아직 지원 기간이 아닙니다.</h3><br><br>
                 <span style="color:white; font-size:15px; line-height:1.9em;">
@@ -157,6 +158,17 @@
                     최종합격 발표 : 3/29(일) 18:00<br>
                 </span>
             {% else %}
+=======
+{#            {% if now|date:"YmdHi" > start|date:"YmdHi" %}#}
+{#                <h3 style="color:white;">아직 지원 기간이 아닙니다.</h3><br><br>#}
+{#                <span style="color:white; font-size:15px; line-height:1.9em;">#}
+{#                    서류접수 : 3/16(월) ~ 3/22(일) 22:00:00<br>#}
+{#                    서류합격 발표 : 3/23(월) 16:00<br>#}
+{#                    개별면접 : 3/25(수) ~ 3/27(금) 17시-20시<br>#}
+{#                    최종합격 발표 : 3/29(일) 18:00<br>#}
+{#                </span>#}
+{#            {% else %}#}
+>>>>>>> 5df040272c86916c4081cb436fd589a80669fc3a
                 {% if user.is_authenticated %}<!-- 로그인이 되어있는 상태 -->
                     <h4 style="color:white;">{{ request.user.last_name }}님 환영합니다.</h4>
                     {% if art %}
@@ -192,7 +204,7 @@
                     </form>
                     <br>
                 {% endif %}
-            {% endif %}
+{#            {% endif %}#}
         </div>
     </div>
     <span style="color:white; font-size:10px; float:right; margin-right:30px; margin-top:50px;">영상제공 : 멋쟁이사자처럼 한국항공대학교</span>
