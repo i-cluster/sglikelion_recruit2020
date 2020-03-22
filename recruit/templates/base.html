@@ -5,7 +5,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700&display=swap&subset=korean" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.css">
     <style>
-        body {font-family: 'NanumSquare';}
+        body {font-family: 'NanumSquare', "맑은 고딕", sans-serif;}
+        input[type="password"]{
+            font-family: monospace;
+        }
         @import url('https://fonts.googleapis.com/css?family=Raleway:900&display=swap');
         @media (max-width: 600px){
             li a{
@@ -35,10 +38,12 @@
                 <li class="nav-item mr-2">
                     <a class="nav-link mx-3" href="{% url 'faq' %}" style="font-size: 20px; font-weight: bold; line-height: 37px;">FAQ</a>
                 </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item border-left pl-2 phone_padding">
-                    <a class="nav-link mx-3 h-100" href="{% url 'profile_update' request.user.profile.id %}" style="font-size: 20px; font-weight: bold; line-height: 37px;">회원정보 수정하기</a>
-                </li>
+                {% if now|date:"YmdHi" > start|date:"YmdHi" %}
+                    {% if user.is_authenticated %}
+                        <li class="nav-item border-left pl-2 phone_padding">
+                            <a class="nav-link mx-3 h-100" href="{% url 'profile_update' request.user.profile.id %}" style="font-size: 20px; font-weight: bold; line-height: 37px;">회원정보 수정하기</a>
+                        </li>
+                    {% endif %}
                 {% endif %}
             </ul>
         </div>
@@ -71,8 +76,8 @@
 {% endblock %}
 {% block bootstrap4_after_content %}
     <div class="footer text-center mt-5">
-        Copyright 2020. Likelion Sogang, All Rights Reserved.<br>
-        {% comment %} <span style="font-size:14px;">Edited by Likelion (학교명)</span> {% endcomment %}
+        {% comment %} <span style="font-size:16px;">Edited by Likelion (학교명)</span><br> {% endcomment %}
+        Copyright 2020. Likelion Sogang, All Rights Reserved.
     </div>
     <br>
 {% endblock %}

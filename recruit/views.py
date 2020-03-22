@@ -8,9 +8,11 @@ from django.views.generic import ListView, CreateView, UpdateView
 from django.http.response import HttpResponseRedirect
 from datetime import datetime
 from django.contrib.auth import logout
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class NewView(CreateView):
+    model = Application
     form_class = ApplicationForm
     template_name = 'new.html'
 
@@ -21,10 +23,16 @@ class NewView(CreateView):
         return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        self.object = form.save()
-        user = self.request.user
-        self.object.created_by = user
-        return super().form_valid(form)
+        try:
+            application = Application.objects.get(created_by=self.request.user)
+            messages.error(self.request, '이미 저장된 글이 있습니다.')
+            return HttpResponseRedirect(reverse('main'))
+        except ObjectDoesNotExist:
+            self.object = form.save()
+            user = self.request.user
+            self.object.created_by = user
+            return super().form_valid(form)
+            
 
     def get_success_url(self):
         messages.success(self.request, '임시 저장되었습니다.')

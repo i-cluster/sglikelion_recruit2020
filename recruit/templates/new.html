@@ -23,6 +23,12 @@
     .container{
         padding: 0 28px;
     }
+    .btn-lg{
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+        }
 }
 </style>
     <div class="pl-md-5 py-3 ml-md-5 mt-5 ml-4" style="font-weight: bold;">
@@ -60,14 +66,14 @@
     </div><br>
     <div class="form-group mb-5">
         <div class="mb-5 h5">5. 본인이 했던 활동이나 프로젝트 중 소개하고 싶은 것이 있다면 자유롭게 첨부해주시기 바랍니다. (필수X, 최대 200MB 파일 1개)</div>
-        <label for="id_q5" class="btn btn-light btn-outline-secondary">
+        <label for="id_q5" class="btn btn-lg btn-light btn-outline-secondary">
             <input type="file" name="q5" style="display: none;" accept="" id="id_q5" onchange="$('#upload-file-info').html(this.files[0].name)">
             <span>파일 업로드</span>
         </label>
         <span class="label label-info ml-3" id="upload-file-info"></span>
     </div>
     <div class="text-center my-5 py-5">
-        <input class="btn btn-light btn-outline-warning" type="submit" value="임시저장하기">
+        <input class="btn btn-lg btn-light btn-outline-warning" type="submit" value="임시저장하기">
     </div>
 </form>
 </div>
@@ -98,8 +104,8 @@
 
       $('#id_q3').keyup(function (e){
           var content = $(this).val().length;
-          $('#counter_q3').html(content + '/700');
-          if(content<=700){
+          $('#counter_q3').html(content + '/800');
+          if(content<=800){
               $('#counter_q3').css('color','black'); 
           }else{
               $('#counter_q3').css('color','red');

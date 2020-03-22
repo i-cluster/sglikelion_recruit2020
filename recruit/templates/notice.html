@@ -53,7 +53,13 @@
             margin-left: 7px;
             font-size: 25px !important;
         }
+        .btn-lg{
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
         }
+    }
 </style>
 
 <div class="pl-md-5 py-3 ml-md-5 mt-5 ml-4" style="font-weight: bold;">
@@ -66,10 +72,10 @@
     <div class="container my-5">
         <h3 style="color:black; font-size: 30px; font-weight: 800">지원 시 유의사항</h3><br>
         <p class="paragraph" style="font-size:17px;">
-            1. 작성 중인 지원서는 개인 프로필에 임시저장되며, 지원서를 최종 제출해야 접수가 완료됩니다.<br>
+            1. 작성 중인 지원서는 개인 프로필에 임시저장되며, <span style="font-weight:bold; text-decoration: underline;">지원서를 최종 제출해야 접수가 완료됩니다.</span><br>
             2. 지원서는 임시저장 기간 내에 자유롭게 수정할 수 있으나 최종 제출 이후에는 수정이 불가능합니다.<br>
-            3. 필수 활동의 참여가 어려운 지원자는 선발 우선 순위에서 불이익을 받을 수 있습니다.<br>
-            4. 제출 기한을 넘긴 지원서는 자동으로 불합격 처리되며 별도의 추가지원 기간은 부여되지 않습니다.<br>
+            3. <a href="{% url 'guide' %}"><span style="color:#ffbb3b; text-decoration: underline;">주요 활동</span></a>의 참여가 어려운 지원자는 선발 우선 순위에서 불이익을 받을 수 있습니다.<br>
+            4. <span style="font-weight:bold; text-decoration: underline;">제출 기한을 넘긴 지원서는 자동으로 불합격 처리되며</span> 별도의 추가지원 기간은 부여되지 않습니다.<br>
             5. 지원 및 자격사항이 사실과 다른 경우 합격이 취소되며 이후 본 단체가 주관하는 활동의 참여가 제한될 수 있습니다.
         </p>
         <br>
@@ -90,7 +96,7 @@
         </p>
         <br><br><br>
         <div class="mt-3 pl-4">
-            <input type="checkbox" id="jb-checkbox" class="custom-control-input" />
+            <input type="checkbox" id="jb-checkbox" class="custom-control-input" required/>
         <label class="custom-control-label" for="jb-checkbox">위 사항을 확인하였습니다.</label>
         </div>
     </div>
@@ -99,7 +105,7 @@
     <br>
 
     <div class="text-center">
-        <a class="btn btn-light btn-outline-warning" href="{% url 'new' %}">
+        <a class="btn btn-lg btn-light btn-outline-warning" href="{% url 'new' %}">
             지원서 작성하기
         </a>
     </div>
