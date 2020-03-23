@@ -14,6 +14,19 @@ class Application(models.Model):
     q5 = models.FileField(upload_to='user', verbose_name='첨부파일', null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, verbose_name='제출 날짜')
     final = models.BooleanField(default=False)
+    INT_CHOICES = (
+        ('WED', '25(수)'),
+       ('THUR', '26(목)'),
+        ('FRI', '27(금)'),
+    )
+    int_date = MultiSelectField(
+        max_length=20,
+        choices=INT_CHOICES,
+        default='WED',
+        verbose_name='면접 날짜',
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return str(self.created_by.last_name) + '의 지원서'

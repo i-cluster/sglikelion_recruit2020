@@ -44,11 +44,36 @@
     <div class="pl-md-5 py-3 ml-md-5 mt-5 ml-4" style="font-weight: bold;">
         <h3 style="font-weight: bold;"><span style="color: #f09837;">멋쟁이사자처럼</span><span style="color:#ff8f66;"> 서강대학교</span></h3>
         <h4 style="font-weight: bold; color:#707070;">2020 상반기 리크루팅</h4>
-        <h4 style="font-weight: bold; color:#707070;">지원서 보기</h4>
+        <h4 style="font-weight: bold; color:#726161;">지원서 보기</h4>
         <div class="border-bottom mr-5" style="max-width: 600px; height: 10px;"></div>
     </div>
 
 <div class="container mt-5">
+    <!--합불공지부분-->
+    <p>
+        <button class="btn-lg btn-outline-warning" style="color:black;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">서류전형 결과보기</button>
+    </p>
+        <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <div >
+                <p>{{ request.user.last_name }}님 서류전형 결과입니다.</p>
+                {% if object_list.art.int_date %} <!--합격-->
+                <p>멋쟁이 사자처럼 서강대학교 8기에 지원해주셔서 진심으로 감사 드립니다. 서류 전형 결과 <b>합격</b>임을 알려드립니다. 면접 일정은 아래와 같습니다.</p>
+   
+                <span class="mb-4 h5 font-weight-bold">면접일:</span>
+                <span class="ml-2">
+                    {{ object_list.art.int_date }}
+                </span>
+
+                {% else %} <!--불합격-->
+                <p>멋쟁이 사자처럼 서강대학교 8기에 지원해주셔서 진심으로 감사 드립니다. 아쉽게도 서류 전형 결과 <b>불합격</b>임을 알려드립니다. 추후 좋은 기회에 꼭 다시 만나뵐 수 있기를 기대하며, 다시 한번 멋쟁이 사자처럼에 보여주신 관심과 열정에 깊은 감사를 드립니다. </p>
+                {% endif %}
+            </div>
+        </div>
+      </div>
+      <br><br>
+
+
     <div class="form-group mb-5">
         <label for="id_q1" class="mb-4 h5 font-weight-bold">1. 지원동기와 활동 목표를 기술하세요. (700자)</label>
         <div name="q1" class="p-5 mt-0 mt-md-4 border rounded" style="max-width: 1000px; min-height:400px;" id="id_q1"><pre>{{ object_list.art.q1 }}</pre></div>
@@ -75,12 +100,14 @@
             <div class="ml-2">{{ object_list.art.q5.name }}</div>
         {% endif %}
     </div><br><br>
+<!--
     <div class="form-group mb-5">
         <span class="mb-4 h5 font-weight-bold">희망 면접일:</span>
         <span class="ml-2">
             {{ request.user.profile.interview_date }}
         </span>
     </div>
+-->
     {% if now|date:"YmdHi" < end|date:"YmdHi" %}
         {% if object_list.art.final == False %}
         <div class="text-center mt-5 mb-4 pt-5">
