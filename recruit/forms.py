@@ -9,7 +9,7 @@ class ApplicationForm(forms.ModelForm):
 
     class Meta:
         model = Application
-        fields = ['q1', 'q2', 'q3', 'q4', 'q5']
+        fields = ['q1', 'q2', 'q3', 'q4', 'q5', 'int_date','int_time']
 
 
 class UserForm(forms.ModelForm):

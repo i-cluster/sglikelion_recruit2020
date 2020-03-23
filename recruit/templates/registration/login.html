@@ -162,7 +162,7 @@
                     {% if art %}
                         <a class="btn btn-outline-warning btn-phone" style="color:white;" href="{% url 'show' %}">지원서 보기</a>
                     {% else %}
-                        {% if now|date:"YmdHi" < end|date:"YmdHi" %}
+                        {% if now|date:"YmdHi" > end|date:"YmdHi" %}
                             <a class="btn btn-outline-warning btn-phone" style="color:white;" href="{% url 'notice' %}">지원서 작성하기</a>
                         {% else %}
                             <br>
