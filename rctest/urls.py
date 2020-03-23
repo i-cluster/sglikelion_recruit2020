@@ -34,4 +34,4 @@ urlpatterns = [
                   path('delete', views.delete, name="delete"),
                   path('guide', views.guide, name="guide"),
                   path('faq', views.faq, name="faq"),
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
