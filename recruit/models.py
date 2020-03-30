@@ -16,6 +16,7 @@ class Application(models.Model):
     final = models.BooleanField(default=False)
     int_date = models.CharField(verbose_name='면접일', max_length=20, default="", blank=True, null=True)
     int_time = models.CharField(verbose_name='면접시간', max_length=20, default="", blank=True, null=True)
+    accept = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.created_by.last_name) + '의 지원서'

@@ -51,11 +51,11 @@
 <div class="container mt-5">
     <!--합불공지부분-->
     <p>
-        <button class="btn-lg btn-outline-warning" style="color:black;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">서류전형 결과보기</button>
+        <button class="btn-lg btn-outline-warning" style="color:black;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">최종결과 확인하기</button>
     </p>
         <div class="collapse" id="collapseExample">
         <div class="card card-body">
-            <div style="line-height:1.7em;">
+            {% comment %} <div style="line-height:1.7em;">
                 <p>안녕하세요. 멋쟁이사자처럼 서강대입니다. {{ request.user.last_name }}님의 서류전형 결과를 알려드립니다.</p><br>
                 {% if object_list.art.int_date %} <!--합격-->
                 <p>
@@ -102,10 +102,67 @@
 
                 {% else %} <!--불합격-->
                 <p style="line-height:1.9em;">
-                    먼저, 바쁘신 중에도 귀한 시간을 내어 8기 리크루팅에 지원해 주셔서 깊은 감사의 말씀을 드립니다.<br>
+                    먼저 바쁘신 중에도 귀한 시간을 내어 8기 리크루팅에 지원해 주셔서 깊은 감사의 말씀을 드립니다.<br>
                     서류 전형 결과, 아쉽게도 {{ request.user.last_name }}님께서는 이번 멋쟁이사자처럼 서강대 8기의 일원으로 함께하지 못하게 되었습니다.<br>
                     선발할 수 있는 인원에 제한이 있어, {{ request.user.last_name }}님이 보여주신 높은 열정과 의지에 충분히 보답해드리지 못해 죄송합니다.<br>
                     추후 더 좋은 기회로 만나뵐 수 있기를 기대하며, 다시 한번 멋쟁이사자처럼 서강대에 보여주신 관심과 열정에 감사를 드립니다.
+                </p>
+                {% endif %}
+            </div> {% endcomment %}
+            <div style="line-height:1.7em;">
+                <p>안녕하세요. 멋쟁이사자처럼 서강대입니다. {{ request.user.last_name }}님의 8기 선발전형 최종 결과를 알려드립니다.</p><br>
+                {% if object_list.art.accept == True %} <!--합격-->
+                <p>
+                    축하드립니다. {{ request.user.last_name }}님께서는 멋쟁이사자처럼 서강대 8기 선발전형에서 최종 합격하셨습니다.<br>
+                    다음 항목에 따라 멋쟁이사자처럼 서강대 8기 신입회원 등록을 진행해주시기 바랍니다.
+                </p><br>
+
+                <p>
+                    1. <a href="http://bitly.kr/hpTr0mkr" target="_blank"><span style="color:#ffbb3b;">멋쟁이사자처럼 서강대 네트워크</span></a>에서 자신의 인적사항을 입력해주세요.<br>
+                    2. <a href="https://my-personality-test.com/true-colours" target="_blank">다음 링크<span style="color:#ffbb3b;"></span></a>에서 테스트를 완료 후 결과 화면을 sogang@likelion.org로 보내주세요.<br>
+                    3. 비대면 강의 원칙에 따라 오프라인 개강 전까지의 모든 세션은 원격 회의 프로그램 Zoom을 활용해 진행됩니다.<br>
+                    4. OT 및 첫 세션은 <span style="font-weight:bold; text-decoration: underline;">4/2(목) 오후 6:30 - 9:30</span>입니다.<br>
+                    5. 사전과제는 두 가지이며, 4/2(목) 첫 세션 전까지 완료해주셔야 합니다. 어려운 점이 생기면 아래 담당 운영진 연락망으로 알려주시기 바랍니다.
+                </p>
+
+                <span class="mb-4 font-weight-bold">사전과제 링크 </span><br>
+                <span class="ml-2">
+                    HTML, CSS : http://bitly.kr/qtbP1Sj1
+                </span><br>
+                <span class="ml-2">
+                    로컬 환경 세팅 : http://bitly.kr/SF8nluGB
+                </span><br>
+                <br>
+
+                <span class="mb-4 font-weight-bold">담당 운영팀 연락처 </span><br>
+                <span class="ml-2">
+                    HTML, CSS : 강서현(010-2734-9173), 노종혁(010-5031-9504)
+                </span><br>
+                <span class="ml-2">
+                    로컬 환경 세팅 : 이미정(010-6588-2471), 이민주(010-7670-9377), 이준희(010-3056-1939)
+                </span><br>
+                <br>
+
+                <p>
+                    다른 문의사항은 멋쟁이사자처럼 8기 서강대학교 대표 연락처(010-3056-1939) 혹은 공식 SNS 채널를 이용해주시기 바랍니다.<br>
+                    멋쟁이사자처럼 서강대 8기의 일원이 되신 것을 다시 한번 진심으로 축하드리며 곧 뵙겠습니다.<br>
+                    {{ request.user.last_name }} 아기사자님.
+                </p><br>
+
+                <span class="mb-4 font-weight-bold">
+                    Hack Your Life<br>
+                    Code Your Dream
+                </span><br><br>
+
+                @ Likelion Sogang, 멋쟁이사자처럼 서강대학교
+
+                {% else %} <!--불합격-->
+                <p style="line-height:1.9em;">
+                    먼저, 바쁘신 중에도 귀한 시간을 내어 8기 리크루팅에 지원해 주셔서 깊은 감사의 말씀을 드립니다.<br>
+                    최종 선발 결과, 아쉽게도 {{ request.user.last_name }}님께서는 이번 멋쟁이사자처럼 서강대 8기의 일원으로 함께하지 못하게 되었습니다.<br>
+                    치열한 경쟁 속에서 {{ request.user.last_name }}님이 서류와 면접에서 보여주신 높은 열정에 정말 오랜 시간 고심했으나<br>
+                    선발할 수 있는 인원에 제한이 있어 {{ request.user.last_name }}님의 열정과 의지에 함께하지 못해 죄송하다는 말씀을 드립니다.<br>
+                    다음에 더 좋은 기회로 만나뵐 수 있기를 바라며, 다시 한번 멋쟁이사자처럼 서강대에 보여주신 관심과 열정에 진심으로 감사드립니다.
                 </p>
                 {% endif %}
             </div>
