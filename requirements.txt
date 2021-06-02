@@ -30,7 +30,7 @@ semantic-version==2.5.0
 six==1.11.0
 sqlparse==0.3.1
 termcolor==1.1.0
-urllib3==1.24.3
+urllib3==1.26.5
 virtualenv==20.0.10
 wcwidth==0.1.8
 zipp==3.1.0
